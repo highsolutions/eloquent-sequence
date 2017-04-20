@@ -1,0 +1,26 @@
+{
+    "name": "highsolutions/eloquent-sequence",
+    "description": "A Laravel package for easy creation and management sequence support for Eloquent models with elastic configuration.",
+    "keywords": ["laravel", "sequence", "eloquent", "model", "order"],
+    "authors": [
+        {
+            "name": "HighSolutions",
+            "email": "adam@highsolutions.pl"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "~5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "HighSolutions\\EloquentSequence\\": "src/"
+        }
+    },
+    "extra": {
+        "component": "package",
+        "frameworks": ["Laravel 5.4"]
+    },
+    "minimum-stability": "stable"
+}
