@@ -162,8 +162,22 @@ Section::find(2)->down();
 
 This will set Section ID=2 with sequence attribute like next Section object (based on sequence attribute) and swap their values accordingly.
 
+Move object to any position
+---------------------------
+
+You are able to move object to another position also. This is very useful when you are implementing drag&drop functionality.
+```php
+Section::find(2)->move(5);
+```
+
+This will set Section ID=2 with sequence attribute to 5th and rest objects' sequence attribute will be updated to match proper order.
+
+
 Changelog
 ---------
+
+1.1.0
+- move objects to any position
 
 1.0.0
 - Add methods up and down
@@ -175,7 +189,6 @@ Changelog
 Roadmap
 -------
 
-* Option for moving object many position further.
 * Recalculation of sequence attribute on demand.
 * Unit tests!
 

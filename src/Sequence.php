@@ -61,4 +61,16 @@ trait Sequence
         return (new SequenceService)->moveDown($this);
     }
 
+    /**
+     * Move object to another position.
+     * 
+     * @return Model
+     * @param int $position
+     * @throws ModelNotFoundException
+     */
+    public function move($position)
+    {
+        return (new SequenceService)->moveTo($this, $position);
+    }
+
 }

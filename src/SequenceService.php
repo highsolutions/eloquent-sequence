@@ -294,4 +294,62 @@ class SequenceService {
 			->first();
 	}
 
+	/**
+	 * Move object to another positon.
+	 * 
+	 * @param Model $obj
+	 * @param int $position
+	 * @return Model
+	 */
+	public function moveTo(Model $obj, $position)
+	{
+		$this->setModel($obj);
+		$position++; //TOODO: starts from 0 or 1?
+
+		$currentSequence = $this->getSequence($this->obj);
+		if($currentSequence == $position)
+			return $obj;
+
+		if($currentSequence < $position)
+			return $this->moveFurther($position);
+
+		return $this->moveEarlier($position);
+	}
+
+	protected function moveFurther($position)
+	{
+		$query = $this->prepareQuery();
+		$currentSequence = $this->getSequence($this->obj);
+
+		$query->where($this->getSequenceConfig('fieldName'), '>', $currentSequence)
+			->where($this->getSequenceConfig('fieldName'), '<=', $position)
+			->sequenced()
+			->get()
+			->each
+			->decrement($this->getSequenceConfig('fieldName'));
+
+		$this->setSequence($this->obj, $position);
+
+		return $this->obj;
+	}
+
+
+	protected function moveEarlier($position)
+	{
+		$query = $this->prepareQuery();
+		$currentSequence = $this->getSequence($this->obj);
+
+		$query->where($this->getSequenceConfig('fieldName'), '>=', $position)
+			->where($this->getSequenceConfig('fieldName'), '<', $currentSequence)
+			->sequenced()
+			->get()
+			->each
+			->increment($this->getSequenceConfig('fieldName'));
+
+		$this->setSequence($this->obj, $position);
+
+		return $this->obj;
+		
+	}
+
 }
