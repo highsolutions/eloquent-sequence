@@ -41,13 +41,15 @@ class Section extends Model {
 Configuration
 -------------
 
-You can specify three parameters:
+You can specify four parameters:
 
  - `group` - field name or field names (then input as an array) which narrows list of objects within sequence parameter will be calculated
 	 - default value: ""
  - `fieldName` - field name in model to store sequence attribute
 	 - default value: "seq"
 - `exceptions` - set this true if you want to catch exceptions during up/down methods
+     - default value: false
+- `orderFrom1` - set this true if your list starts from 1 not 0 / used for move method
      - default value: false
 
 Usage
@@ -175,6 +177,9 @@ This will set Section ID=2 with sequence attribute to 5th and rest objects' sequ
 
 Changelog
 ---------
+
+1.1.1
+- config for starting index of list (for move method)
 
 1.1.0
 - move objects to any position

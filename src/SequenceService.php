@@ -55,6 +55,7 @@ class SequenceService {
     		'group' => '',
     		'fieldName' => 'seq',
     		'exceptions' => false,
+    		'orderFrom1' => false,
     	];
     }
 
@@ -304,7 +305,8 @@ class SequenceService {
 	public function moveTo(Model $obj, $position)
 	{
 		$this->setModel($obj);
-		$position++; //TOODO: starts from 0 or 1?
+		if(!$this->getSequenceConfig('orderFrom1'))
+			$position++;
 
 		$currentSequence = $this->getSequence($this->obj);
 		if($currentSequence == $position)
