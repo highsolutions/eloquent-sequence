@@ -174,9 +174,21 @@ Section::find(2)->move(5);
 
 This will set Section ID=2 with sequence attribute to 5th and rest objects' sequence attribute will be updated to match proper order.
 
+Refresh positions in model
+---------------------------
+
+Sometimes you may need to recalculate all position for given model (e.g. because of manually manipulating datased). You can do it easily via:
+```php
+Section::refreshSequence();
+```
+
+This static method will recalculate sequence attributes for every record for this model. Narrowing groups will be used as well as current sequence attribute of every record.
 
 Changelog
 ---------
+
+1.2.0
+- recalculation of sequence attribute on demand
 
 1.1.1
 - config for starting index of list (for move method)
@@ -194,10 +206,9 @@ Changelog
 Roadmap
 -------
 
-* Recalculation of sequence attribute on demand.
 * Unit tests!
 
 Credits
 -------
 
-This package is developed by [HighSolutions](http://highsolutions.pl), software house from Poland in love in Laravel.
+This package is developed by [HighSolutions](https://highsolutions.org), software house from Poland in love in Laravel.

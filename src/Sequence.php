@@ -73,4 +73,14 @@ trait Sequence
         return (new SequenceService)->moveTo($this, $position);
     }
 
+    /**
+     * Refresh all sequence position of model.
+     * 
+     * @return Model
+     */
+    public static function refreshSequence()
+    {
+        return (new SequenceService)->refresh(get_called_class());
+    }
+
 }

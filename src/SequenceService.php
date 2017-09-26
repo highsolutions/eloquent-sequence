@@ -350,8 +350,46 @@ class SequenceService {
 
 		$this->setSequence($this->obj, $position);
 
-		return $this->obj;
+		return $this->obj;		
+	}
+
+	public function refresh($class)
+	{
+		$this->setModel(resolve($class));
 		
+		$sequences = [];
+		$field = $this->getSequenceConfig('fieldName');
+
+		$results = $this->obj->newQuery()
+			->sequenced()
+			->get()
+			->each(function ($item) use ($field, &$sequences) {
+				$key = $this->generateConditionsHash($item);
+				if(!isset($sequences[$key]))
+					$sequences[$key] = 1;
+				
+				$item->{$field} = $sequences[$key]++;
+				$item->save();
+			});
+
+		return $this->obj;
+	}
+
+	protected function generateConditionsHash($item)
+	{
+		$key = '';
+		if($this->isGroupProvided() == true) {
+			$groups = $this->getSequenceConfig('group');
+			if(is_array($groups) == false)
+				$groups = [$groups];
+
+			foreach($groups as $group)
+				$key .= $item->{$group} . '###';
+
+			return $key;
+		}
+
+		return '*'; // all keys
 	}
 
 }
