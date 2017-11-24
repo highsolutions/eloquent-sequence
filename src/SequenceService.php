@@ -91,7 +91,7 @@ class SequenceService {
 	 * @param string $key
 	 * @return mixed
 	 */
-	protected function getSequenceConfig(string $key) 
+	protected function getSequenceConfig($key) 
 	{
 		if(isset($this->config[$key]))
 			return $this->config[$key];
