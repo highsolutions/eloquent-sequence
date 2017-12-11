@@ -38,6 +38,8 @@ class Section extends Model {
 }
 ```
 
+**Note:** as a field name do not use name of any exisiting method in that class, including `sequence`, as this will not work.
+
 Configuration
 -------------
 
