@@ -8,11 +8,17 @@ Easy creation and management sequence support for Eloquent models with elastic c
 Installation
 ------------
 
-Add the following line to the `require` section of your Laravel webapp's `composer.json` file:
+This package can be installed through Composer:
+
+```bash
+composer require highsolutions/eloquent-sequence
+```
+
+Or by adding the following line to the `require` section of your Laravel webapp's `composer.json` file:
 
 ```javascript
     "require": {
-        "HighSolutions/eloquent-sequence": "1.*"
+        "HighSolutions/eloquent-sequence": "2.*"
     }
 ```
 
@@ -184,8 +190,23 @@ Section::refreshSequence();
 
 This static method will recalculate sequence attributes for every record for this model. Narrowing groups will be used as well as current sequence attribute of every record.
 
+Testing
+---------
+
+Run the tests with:
+
+``` bash
+vendor/bin/phpunit
+```
+
 Changelog
 ---------
+
+2.0.0
+- full unit tests
+- fix `up` method when used on object with seq > 2
+- add `InvalidArgumentException` when position argument is invalid for `move` method
+- method `move` with invalid position argument (with exceptions parameter disabled) sets sequence attribute to first possible number (count + 1), instead of setting value from argument / BREAKING CHANGE
 
 1.2.0
 - recalculation of sequence attribute on demand
@@ -202,11 +223,6 @@ Changelog
 0.9.0
 - Create package
 - Create trait for automatic sequence attribute handling
-
-Roadmap
--------
-
-* Unit tests!
 
 Credits
 -------

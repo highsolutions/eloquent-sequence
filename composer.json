@@ -11,16 +11,30 @@
     "license": "MIT",
     "require": {
         "php": ">=5.6.4",
+        "illuminate/console": "~5.5.0",
         "illuminate/support": "~5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.2",
+        "orchestra/testbench" : "~3.5.0",
+        "mockery/mockery": "^1.0"
     },
     "autoload": {
         "psr-4": {
             "HighSolutions\\EloquentSequence\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "HighSolutions\\EloquentSequence\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "extra": {
         "component": "package",
-        "frameworks": ["Laravel 5.4"]
+        "frameworks": ["Laravel 5.5"]
     },
     "minimum-stability": "stable"
 }

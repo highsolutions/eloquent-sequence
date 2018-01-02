@@ -158,7 +158,8 @@ class SequenceService {
 	 * @param \Illuminate\Database\Eloquent\Model $obj
 	 * @return void
 	 */
-	public function updateSequences(Model $obj) {
+	public function updateSequences(Model $obj) 
+	{
 		$this->setModel($obj);
 
 		$query = $this->prepareQueryWithObjectsNeedingUpdate();		
@@ -215,11 +216,11 @@ class SequenceService {
 	/**
 	 * Swap position between two objects.
 	 * 
-	 * @param Model $obj
+	 * @param Model|null $obj
 	 * @return Model
 	 * @throws ModelNotFoundException
 	 */
-	private function moveObject(Model $secondObj)
+	private function moveObject($secondObj)
 	{
 		if($secondObj == null) {
 			if($this->getSequenceConfig('exceptions'))
@@ -291,7 +292,7 @@ class SequenceService {
 		$condition = $earlier ? '<' : '>';
 
 		return $query->where($this->getSequenceConfig('fieldName'), $condition, $currentSequence)
-			->sequenced()
+			->sequenced('desc')
 			->first();
 	}
 
@@ -320,6 +321,11 @@ class SequenceService {
 
 	protected function moveFurther($position)
 	{
+		$max = $this->count();
+		if($this->getSequenceConfig('exceptions') && $max < $position) {
+			throw new InvalidArgumentException("The parameter is out of range.");
+		}
+
 		$query = $this->prepareQuery();
 		$currentSequence = $this->getSequence($this->obj);
 
@@ -330,11 +336,18 @@ class SequenceService {
 			->each
 			->decrement($this->getSequenceConfig('fieldName'));
 
-		$this->setSequence($this->obj, $position);
+		$this->setSequence($this->obj, $position <= $max ? $position : $max);
 
 		return $this->obj;
 	}
 
+	protected function count()
+	{
+		return $this->prepareQuery()
+			->sequenced('desc')
+			->first()
+			->{$this->getSequenceConfig('fieldName')};
+	}
 
 	protected function moveEarlier($position)
 	{
@@ -348,7 +361,7 @@ class SequenceService {
 			->each
 			->increment($this->getSequenceConfig('fieldName'));
 
-		$this->setSequence($this->obj, $position);
+		$this->setSequence($this->obj, $position < 1 ? 1 : $position);
 
 		return $this->obj;		
 	}

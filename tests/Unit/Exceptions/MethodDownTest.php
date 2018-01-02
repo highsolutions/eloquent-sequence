@@ -1,0 +1,55 @@
+<?php
+
+namespace HighSolutions\EloquentSequence\Test\Unit\Exceptions;
+
+use HighSolutions\EloquentSequence\Test\Models\ExceptionModel;
+use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+class MethodDownTest extends SequenceTestCase
+{
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->setClass(ExceptionModel::class);
+    }
+
+    /** @test */
+    public function use_down_method_on_first_element()
+    {
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+
+        $model1->down();
+
+        $this->assertEquals(2, $model1->fresh()->seq);
+        $this->assertEquals(1, $model2->fresh()->seq);
+    }
+
+    /** @test */
+    public function use_down_method_on_last_element()
+    {
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+
+        $this->expectException(ModelNotFoundException::class);
+        $model2->down();
+    }
+
+    /** @test */
+    public function use_down_method_on_second_element()
+    {
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+        $model3 = $this->newModel();
+
+        $model2->down();
+
+        $this->assertEquals(1, $model1->fresh()->seq);
+        $this->assertEquals(3, $model2->fresh()->seq);
+        $this->assertEquals(2, $model3->fresh()->seq);
+    }
+
+}
