@@ -189,6 +189,9 @@ This static method will recalculate sequence attributes for every record for thi
 Changelog
 ---------
 
+1.3.1
+- fix `down` method when used on object with sequence attribute > 2 (bug introduced in 1.3.0)
+
 1.3.0
 - fix `up` method when used on object with sequence attribute > 2
 
