@@ -172,6 +172,30 @@ Section::find(2)->down();
 
 This will set Section ID=2 with sequence attribute like next Section object (based on sequence attribute) and swap their values accordingly.
 
+Move object to the first position
+---------------------------------
+
+To move object to the first position, you only need to:
+```php
+Section::find(2)->first();
+```
+
+This will set sequence attribute to the first position in the sequence and will reorder the objects between the original position and the first position accordingly.
+
+Narrowing groups from configuration will be of course used.
+
+Move object to the last position
+--------------------------------
+
+To move object to the last position, you only need to:
+```php
+Section::find(2)->last();
+```
+
+This will set sequence attribute to the last position in the sequence and will reorder the objects between the original position and the last position accordingly.
+
+Narrowing groups from configuration will be of course used.
+
 Move object to any position
 ---------------------------
 
