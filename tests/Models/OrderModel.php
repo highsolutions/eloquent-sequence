@@ -13,10 +13,13 @@ class OrderModel extends Model
 
 	protected $fillable = ['name'];
 
+	public $exceptionsParam = false;
+
 	public function sequence()
 	{
 		return [
 			'fieldName' => 'seq',
+			'exceptions' => $this->exceptionsParam,
 			'orderFrom1' => true,
 		];
 	}

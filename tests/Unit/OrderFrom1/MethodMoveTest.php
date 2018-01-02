@@ -4,6 +4,7 @@ namespace HighSolutions\EloquentSequence\Test\Unit\OrderFrom1;
 
 use HighSolutions\EloquentSequence\Test\Models\OrderModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use Psr\Log\InvalidArgumentException;
 
 class MethodMoveTest extends SequenceTestCase
 {
@@ -77,6 +78,28 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(4, $model2->fresh()->seq);
         $this->assertEquals(2, $model3->fresh()->seq);
         $this->assertEquals(3, $model4->fresh()->seq);
+    }
+
+    /** @test */
+    public function use_move_method_on_first_element_to_move_to_bottom_with_overflow_position_with_exceptions()
+    {
+        $model1 = $this->newModel();
+        $model1->exceptionsParam = true;
+        $model2 = $this->newModel();
+
+        $this->expectException(InvalidArgumentException::class);
+        $model1->move(3);
+    }
+
+    /** @test */
+    public function use_move_method_on_second_element_to_move_to_top_with_overflow_position_with_exceptions()
+    {
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+        $model2->exceptionsParam = true;
+
+        $this->expectException(InvalidArgumentException::class);
+        $model2->move(0);
     }
 
 }

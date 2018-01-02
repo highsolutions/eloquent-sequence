@@ -47,8 +47,17 @@ class MethodMoveTest extends SequenceTestCase
         $model2 = $this->newModel();
 
         $this->expectException(InvalidArgumentException::class);
-        $model1->move(200);
+        $model1->move(2);
     }
 
+    /** @test */
+    public function use_move_method_on_second_element_to_move_to_top_with_overflow_position()
+    {
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+
+        $this->expectException(InvalidArgumentException::class);
+        $model2->move(-1);
+    }
 
 }

@@ -45,4 +45,18 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
+    /** @test */
+    public function use_down_method_on_first_element_with_3_elements()
+    {
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+        $model3 = $this->newModel();
+
+        $model1->down();
+
+        $this->assertEquals(2, $model1->fresh()->seq);
+        $this->assertEquals(1, $model2->fresh()->seq);
+        $this->assertEquals(3, $model3->fresh()->seq);
+    }
+
 }

@@ -204,11 +204,19 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+2.0.1
+- add `InvalidArgumentException` when position argument is lower than first possible sequence value for `move` method
+
 2.0.0
 - full unit tests
-- fix `up` method when used on object with seq > 2
-- add `InvalidArgumentException` when position argument is invalid for `move` method
+- add `InvalidArgumentException` when position argument is bigger than last possible sequecne value for `move` method
 - method `move` with invalid position argument (with exceptions parameter disabled) sets sequence attribute to first possible number (count + 1), instead of setting value from argument / BREAKING CHANGE
+
+1.3.1
+- fix `down` method when used on object with seq > 2 (bug introduced in 1.3.0)
+
+1.3.0
+- fix `up` method when used on object with seq > 2
 
 1.2.0
 - recalculation of sequence attribute on demand

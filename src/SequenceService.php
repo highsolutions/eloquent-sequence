@@ -292,7 +292,7 @@ class SequenceService {
 		$condition = $earlier ? '<' : '>';
 
 		return $query->where($this->getSequenceConfig('fieldName'), $condition, $currentSequence)
-			->sequenced('desc')
+			->sequenced($earlier ? 'desc' : 'asc')
 			->first();
 	}
 
@@ -351,6 +351,10 @@ class SequenceService {
 
 	protected function moveEarlier($position)
 	{
+		if($this->getSequenceConfig('exceptions') && $position < ($this->getSequenceConfig('orderFrom1') ? 2 : 1)) {
+			throw new InvalidArgumentException("The parameter is out of range.");
+		}
+
 		$query = $this->prepareQuery();
 		$currentSequence = $this->getSequence($this->obj);
 

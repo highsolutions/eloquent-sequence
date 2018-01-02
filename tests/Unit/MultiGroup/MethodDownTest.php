@@ -57,4 +57,20 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
+    /** @test */
+    public function use_down_method_on_first_element_with_3_elements_with_different_groups()
+    {
+        $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
+        $this->create(1, ['group' => 'A', 'group2' => 'B']);
+        $model2 = $this->newModel(['group' => 'A', 'group2' => 'A']);
+        $this->create(1, ['group' => 'A', 'group2' => 'B']);
+        $model3 = $this->newModel(['group' => 'A', 'group2' => 'A']);
+
+        $model1->down();
+
+        $this->assertEquals(2, $model1->fresh()->seq);
+        $this->assertEquals(1, $model2->fresh()->seq);
+        $this->assertEquals(3, $model3->fresh()->seq);
+    }
+
 }
