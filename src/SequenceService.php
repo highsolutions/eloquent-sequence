@@ -291,7 +291,7 @@ class SequenceService {
 		$condition = $earlier ? '<' : '>';
 
 		return $query->where($this->getSequenceConfig('fieldName'), $condition, $currentSequence)
-			->sequenced()
+			->sequenced('desc')
 			->first();
 	}
 
