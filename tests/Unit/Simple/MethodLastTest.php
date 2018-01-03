@@ -13,7 +13,7 @@ class MethodLastTest extends SequenceTestCase
         $model1 = $this->newModel();
         $model2 = $this->newModel();
 
-        $model1->last();
+        $model1->moveToLast();
 
         $this->assertEquals(2, $model1->fresh()->seq);
         $this->assertEquals(1, $model2->fresh()->seq);
@@ -25,7 +25,7 @@ class MethodLastTest extends SequenceTestCase
         $model1 = $this->newModel();
         $model2 = $this->newModel();
 
-        $model2->last();
+        $model2->moveToLast();
 
         $this->assertEquals(1, $model1->fresh()->seq);
         $this->assertEquals(2, $model2->fresh()->seq);
@@ -38,7 +38,7 @@ class MethodLastTest extends SequenceTestCase
         $model2 = $this->newModel();
         $model3 = $this->newModel();
 
-        $model2->last();
+        $model2->moveToLast();
 
         $this->assertEquals(1, $model1->fresh()->seq);
         $this->assertEquals(3, $model2->fresh()->seq);
@@ -52,7 +52,7 @@ class MethodLastTest extends SequenceTestCase
         $model2 = $this->newModel();
         $model3 = $this->newModel();
 
-        $model1->last();
+        $model1->moveToLast();
 
         $this->assertEquals(3, $model1->fresh()->seq);
         $this->assertEquals(1, $model2->fresh()->seq);

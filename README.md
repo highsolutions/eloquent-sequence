@@ -177,7 +177,7 @@ Move object to the first position
 
 To move object to the first position, you only need to:
 ```php
-Section::find(2)->first();
+Section::find(2)->moveToFirst();
 ```
 
 This will set sequence attribute to the first position in the sequence and will reorder the objects between the original position and the first position accordingly.
@@ -189,7 +189,7 @@ Move object to the last position
 
 To move object to the last position, you only need to:
 ```php
-Section::find(2)->last();
+Section::find(2)->moveToLast();
 ```
 
 This will set sequence attribute to the last position in the sequence and will reorder the objects between the original position and the last position accordingly.
@@ -209,7 +209,7 @@ This will set Section ID=2 with sequence attribute to 5th and rest objects' sequ
 Refresh positions in model
 ---------------------------
 
-Sometimes you may need to recalculate all position for given model (e.g. because of manually manipulating datased). You can do it easily via:
+Sometimes you may need to recalculate all position for given model (e.g. because of manually manipulating dataset). You can do it easily via:
 ```php
 Section::refreshSequence();
 ```
@@ -227,6 +227,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+2.0.2
+- add methods `moveToFirst` and `moveToLast`
 
 2.0.1
 - add `InvalidArgumentException` when position argument is lower than first possible sequence value for `move` method

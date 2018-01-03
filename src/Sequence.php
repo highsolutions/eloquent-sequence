@@ -74,22 +74,12 @@ trait Sequence
     }
 
     /**
-     * Refresh all sequence position of model.
-     *
-     * @return Model
-     */
-    public static function refreshSequence()
-    {
-        return (new SequenceService)->refresh(get_called_class());
-    }
-
-    /**
      * Move object to the first position.
      *
      * @return Model
      * @throws ModelNotFoundException
      */
-    public function first()
+    public function moveToFirst()
     {
         return (new SequenceService)->moveTo($this, 0);
     }
@@ -100,9 +90,19 @@ trait Sequence
      * @return Model
      * @throws ModelNotFoundException
      */
-    public function last()
+    public function moveToLast()
     {
         return (new SequenceService)->moveTo($this, $this->count());
+    }
+
+    /**
+     * Refresh all sequence position of model.
+     *
+     * @return Model
+     */
+    public static function refreshSequence()
+    {
+        return (new SequenceService)->refresh(get_called_class());
     }
 
 }

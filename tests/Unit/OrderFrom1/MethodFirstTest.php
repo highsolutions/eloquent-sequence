@@ -1,11 +1,19 @@
 <?php
 
-namespace HighSolutions\EloquentSequence\Test\Unit\Simple;
+namespace HighSolutions\EloquentSequence\Test\Unit\OrderFrom1;
 
+use HighSolutions\EloquentSequence\Test\Models\OrderModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodFirstTest extends SequenceTestCase
 {
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->setClass(OrderModel::class);
+    }
 
     /** @test */
     public function use_first_method_on_first_element()
