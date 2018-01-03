@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace HighSolutions\EloquentSequence;
 
@@ -15,7 +15,7 @@ trait Sequence
      * @return array
      */
     abstract public function sequence();
-	
+
 	/**
 	 * Boot Sequence Observer for event handling.
 	 *
@@ -41,7 +41,7 @@ trait Sequence
 
     /**
      * Move object one position earlier.
-     * 
+     *
      * @return Model
      * @throws ModelNotFoundException
      */
@@ -52,7 +52,7 @@ trait Sequence
 
     /**
      * Move object one position later.
-     * 
+     *
      * @return Model
      * @throws ModelNotFoundException
      */
@@ -63,7 +63,7 @@ trait Sequence
 
     /**
      * Move object to another position.
-     * 
+     *
      * @return Model
      * @param int $position
      * @throws ModelNotFoundException
@@ -74,8 +74,30 @@ trait Sequence
     }
 
     /**
+     * Move object to the first position.
+     *
+     * @return Model
+     * @throws ModelNotFoundException
+     */
+    public function moveToFirst()
+    {
+        return (new SequenceService)->moveTo($this, 0);
+    }
+
+    /**
+     * Move object to the last position.
+     *
+     * @return Model
+     * @throws ModelNotFoundException
+     */
+    public function moveToLast()
+    {
+        return (new SequenceService)->moveTo($this, $this->count());
+    }
+
+    /**
      * Refresh all sequence position of model.
-     * 
+     *
      * @return Model
      */
     public static function refreshSequence()
