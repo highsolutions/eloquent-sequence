@@ -1,4 +1,4 @@
-Eloquent Sequence
+Eloquent Sequence ![CircleCI](https://circleci.com/gh/highsolutions/eloquent-sequence.svg?style=svg) ![StyleCI](https://styleci.io/repos/61547910/shield?branch=master)
 ================
 
 Easy creation and management sequence support for Eloquent models with elastic configuration.
