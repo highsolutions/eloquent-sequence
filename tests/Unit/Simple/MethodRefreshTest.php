@@ -2,12 +2,11 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\Simple;
 
-use HighSolutions\EloquentSequence\Test\Models\SimpleModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\SimpleModel;
 
 class MethodRefreshTest extends SequenceTestCase
 {
-
     /** @test */
     public function use_refresh_method_on_proper_collection()
     {
@@ -46,5 +45,4 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(2, $model1->fresh()->seq);
         $this->assertEquals(1, $model2->fresh()->seq);
     }
-
 }

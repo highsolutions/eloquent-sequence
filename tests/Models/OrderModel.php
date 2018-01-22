@@ -2,26 +2,25 @@
 
 namespace HighSolutions\EloquentSequence\Test\Models;
 
-use HighSolutions\EloquentSequence\Sequence;
 use Illuminate\Database\Eloquent\Model;
+use HighSolutions\EloquentSequence\Sequence;
 
 class OrderModel extends Model
 {
-	use Sequence;
+    use Sequence;
 
     protected $table = 'simple_models';
 
-	protected $fillable = ['name'];
+    protected $fillable = ['name'];
 
-	public $exceptionsParam = false;
+    public $exceptionsParam = false;
 
-	public function sequence()
-	{
-		return [
-			'fieldName' => 'seq',
-			'exceptions' => $this->exceptionsParam,
-			'orderFrom1' => true,
-		];
-	}
-
+    public function sequence()
+    {
+        return [
+            'fieldName' => 'seq',
+            'exceptions' => $this->exceptionsParam,
+            'orderFrom1' => true,
+        ];
+    }
 }

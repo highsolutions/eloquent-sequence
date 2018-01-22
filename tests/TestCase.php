@@ -6,7 +6,6 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -56,14 +55,13 @@ abstract class TestCase extends OrchestraTestCase
 
     protected function createSimpleModelTable()
     {
-        include_once __DIR__ . '/stubs/create_simple_model_table.php.stub';
+        include_once __DIR__.'/stubs/create_simple_model_table.php.stub';
 
         (new \CreateSimpleModelTable())->up();
     }
 
     public function getTempDirectory(): string
     {
-        return __DIR__ . '/temp';
+        return __DIR__.'/temp';
     }
-
 }

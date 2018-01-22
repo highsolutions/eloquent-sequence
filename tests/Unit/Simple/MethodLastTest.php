@@ -6,7 +6,6 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodLastTest extends SequenceTestCase
 {
-
     /** @test */
     public function use_last_method_on_first_element()
     {
@@ -58,5 +57,4 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
         $this->assertEquals(2, $model3->fresh()->seq);
     }
-
 }

@@ -2,13 +2,12 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\Exceptions;
 
-use HighSolutions\EloquentSequence\Test\Models\ExceptionModel;
-use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\ExceptionModel;
 
 class MethodUpTest extends SequenceTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -51,5 +50,4 @@ class MethodUpTest extends SequenceTestCase
         $this->assertEquals(3, $model2->fresh()->seq);
         $this->assertEquals(2, $model3->fresh()->seq);
     }
-
 }
