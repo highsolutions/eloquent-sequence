@@ -228,6 +228,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+2.0.3
+- add StyleCI and CircleCI support
+
 2.0.2
 - add methods `moveToFirst` and `moveToLast`
 
