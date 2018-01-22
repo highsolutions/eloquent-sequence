@@ -2,23 +2,22 @@
 
 namespace HighSolutions\EloquentSequence\Test\Models;
 
-use HighSolutions\EloquentSequence\Sequence;
 use Illuminate\Database\Eloquent\Model;
+use HighSolutions\EloquentSequence\Sequence;
 
 class MultiGroupModel extends Model
 {
-	use Sequence;
+    use Sequence;
 
     protected $table = 'simple_models';
 
-	protected $fillable = ['name', 'group', 'group2', 'seq'];
+    protected $fillable = ['name', 'group', 'group2', 'seq'];
 
-	public function sequence()
-	{
-		return [
-			'fieldName' => 'seq',
-			'group' => ['group', 'group2'],
-		];
-	}
-
+    public function sequence()
+    {
+        return [
+            'fieldName' => 'seq',
+            'group' => ['group', 'group2'],
+        ];
+    }
 }

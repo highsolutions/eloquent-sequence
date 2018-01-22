@@ -6,7 +6,6 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class InsertingSequenceToNewObjectsTest extends SequenceTestCase
 {
-
     /** @test */
     public function adds_1_to_first_element()
     {
@@ -32,5 +31,4 @@ class InsertingSequenceToNewObjectsTest extends SequenceTestCase
 
         $this->assertEquals(3, $model->seq);
     }
-
 }

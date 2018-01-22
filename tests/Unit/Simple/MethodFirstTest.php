@@ -6,7 +6,6 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodFirstTest extends SequenceTestCase
 {
-
     /** @test */
     public function use_first_method_on_first_element()
     {
@@ -44,5 +43,4 @@ class MethodFirstTest extends SequenceTestCase
         $this->assertEquals(3, $model2->fresh()->seq);
         $this->assertEquals(1, $model3->fresh()->seq);
     }
-
 }

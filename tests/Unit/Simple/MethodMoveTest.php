@@ -6,7 +6,6 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodMoveTest extends SequenceTestCase
 {
-
     /** @test */
     public function use_move_method_on_second_element_to_move_on_top()
     {
@@ -58,5 +57,4 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
         $this->assertEquals(3, $model4->fresh()->seq);
     }
-
 }

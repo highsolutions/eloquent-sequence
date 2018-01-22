@@ -6,7 +6,6 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
 {
-
     /** @test */
     public function sets_1_to_second_object_when_first_is_deleted()
     {
@@ -46,5 +45,4 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
         $this->assertEquals(2, $model3->fresh()->seq);
     }
-
 }

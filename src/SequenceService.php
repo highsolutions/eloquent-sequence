@@ -2,22 +2,22 @@
 
 namespace HighSolutions\EloquentSequence;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Psr\Log\InvalidArgumentException;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class SequenceService {
-	
-	/**
-	 * @var \Illuminate\Database\Eloquent\Model
-	 */
-	protected $obj;
+class SequenceService
+{
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    protected $obj;
 
-	/**
-	 * @var array
-	 */
-	protected $config;
+    /**
+     * @var array
+     */
+    protected $config;
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $obj
@@ -27,386 +27,402 @@ class SequenceService {
     {
         $this->obj = $obj;
         $this->pullConfigurationFromModel();
+
         return $this;
     }
 
     /**
      * Assign configuration of stored Model object to $this->config.
-     * 
+     *
      * @return void
      */
     protected function pullConfigurationFromModel()
     {
-    	$this->config = $this->getDefaultConfiguration();
+        $this->config = $this->getDefaultConfiguration();
 
-    	foreach($this->obj->sequence() as $key => $value) {
-    		$this->config[$key] = $value;
-    	}
+        foreach ($this->obj->sequence() as $key => $value) {
+            $this->config[$key] = $value;
+        }
     }
 
     /**
      * Returns default configuration of service.
-     * 
+     *
      * @return bool
      */
-    protected function getDefaultConfiguration() 
+    protected function getDefaultConfiguration()
     {
-    	return [
-    		'group' => '',
-    		'fieldName' => 'seq',
-    		'exceptions' => false,
-    		'orderFrom1' => false,
-    	];
+        return [
+            'group' => '',
+            'fieldName' => 'seq',
+            'exceptions' => false,
+            'orderFrom1' => false,
+        ];
     }
 
-	/**
-	 * Assign sequence attribute to model.
-	 * 
-	 * @param \Illuminate\Database\Eloquent\Model $obj
-	 * @return void
-	 */
-	public function assignSequence(Model $obj) {
-		$this->setModel($obj);
+    /**
+     * Assign sequence attribute to model.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $obj
+     * @return void
+     */
+    public function assignSequence(Model $obj)
+    {
+        $this->setModel($obj);
 
-		if($this->isAlreadyAssigned() == true)
-			return;
-	
-		$query = $this->prepareQuery();
-		$this->calculateSequenceForObject($query);
-	}
+        if ($this->isAlreadyAssigned() == true) {
+            return;
+        }
 
-	/**
-	 * Check if sequence attribute is already assigned. If yes, terminate operation.
-	 * 
-	 * @return bool
-	 */
-	protected function isAlreadyAssigned()
-	{
-		return $this->obj->{$this->getSequenceConfig('fieldName')} != 0;
-	}
+        $query = $this->prepareQuery();
+        $this->calculateSequenceForObject($query);
+    }
 
-	/**
-	 * Get value from configuration of given key.
-	 * 
-	 * @param string $key
-	 * @return mixed
-	 */
-	protected function getSequenceConfig($key) 
-	{
-		if(isset($this->config[$key]))
-			return $this->config[$key];
+    /**
+     * Check if sequence attribute is already assigned. If yes, terminate operation.
+     *
+     * @return bool
+     */
+    protected function isAlreadyAssigned()
+    {
+        return $this->obj->{$this->getSequenceConfig('fieldName')} != 0;
+    }
 
-		throw new InvalidArgumentException("There is no specific key ({$key}) in Sequence configuration.");
-	}
+    /**
+     * Get value from configuration of given key.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    protected function getSequenceConfig($key)
+    {
+        if (isset($this->config[$key])) {
+            return $this->config[$key];
+        }
 
-	/**
-	 * Check if group configuration is set.
-	 * 
-	 * @return bool
-	 */
-	protected function isGroupProvided()
-	{
-		$group = $this->getSequenceConfig('group');
-		return $group !== null && $group !== '';
-	}
+        throw new InvalidArgumentException("There is no specific key ({$key}) in Sequence configuration.");
+    }
 
-	/**
-	 * Prepares query based on group configuration.
-	 * 
-	 * @return Model
-	 */
-	protected function prepareQuery()
-	{
-		$query = $this->obj->newQuery();
-		return $this->fillQueryWithGroupConditions($query);
-	}
+    /**
+     * Check if group configuration is set.
+     *
+     * @return bool
+     */
+    protected function isGroupProvided()
+    {
+        $group = $this->getSequenceConfig('group');
 
-	/**
-	 * Fills query with where clauses for specified group configuration.
-	 * 
-	 * @param \Illuminate\Database\Eloquent\Model $query
-	 * @return \Illuminate\Database\Eloquent\Model
-	 */
-	protected function fillQueryWithGroupConditions($query) 
-	{
-		if($this->isGroupProvided() == true) {
-			$groups = $this->getSequenceConfig('group');
-			if(is_array($groups) == false)
-				$groups = [$groups];
+        return $group !== null && $group !== '';
+    }
 
-			foreach($groups as $group)
-				$query = $query->where($group, $this->obj->{$group});
-		}
+    /**
+     * Prepares query based on group configuration.
+     *
+     * @return Model
+     */
+    protected function prepareQuery()
+    {
+        $query = $this->obj->newQuery();
 
-		return $query;
-	}
+        return $this->fillQueryWithGroupConditions($query);
+    }
 
-	/**
-	 * Assign calculated sequence value to given object
-	 * 
-	 * @param \Illuminate\Database\Eloquent\Model
-	 * @return void
-	 */
-	protected function calculateSequenceForObject($query)
-	{
-		$this->obj->{$this->getSequenceConfig('fieldName')} = $query->max($this->getSequenceConfig('fieldName')) + 1;
-	}
+    /**
+     * Fills query with where clauses for specified group configuration.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $query
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    protected function fillQueryWithGroupConditions($query)
+    {
+        if ($this->isGroupProvided() == true) {
+            $groups = $this->getSequenceConfig('group');
+            if (is_array($groups) == false) {
+                $groups = [$groups];
+            }
 
-	/**
-	 * Update sequence attribute to models with sequence number greater than delering object.
-	 * 
-	 * @param \Illuminate\Database\Eloquent\Model $obj
-	 * @return void
-	 */
-	public function updateSequences(Model $obj) 
-	{
-		$this->setModel($obj);
+            foreach ($groups as $group) {
+                $query = $query->where($group, $this->obj->{$group});
+            }
+        }
 
-		$query = $this->prepareQueryWithObjectsNeedingUpdate();		
-		$query = $this->fillQueryWithGroupConditions($query);
-		$this->decrementObjects($query);
-	}
+        return $query;
+    }
 
-	/**
-	 * Prepares query with objects stored in database with sequence number greater than deleteting object.
-	 * 
-	 * @return \Illuminate\Support\Facades\DB
-	 */
-	protected function prepareQueryWithObjectsNeedingUpdate()
-	{
-		return DB::table($this->obj->getTable())
-					->where($this->getSequenceConfig('fieldName'), '>', $this->obj->{$this->getSequenceConfig('fieldName')});	
-	}
+    /**
+     * Assign calculated sequence value to given object.
+     *
+     * @param \Illuminate\Database\Eloquent\Model
+     * @return void
+     */
+    protected function calculateSequenceForObject($query)
+    {
+        $this->obj->{$this->getSequenceConfig('fieldName')} = $query->max($this->getSequenceConfig('fieldName')) + 1;
+    }
 
-	/**
-	 * Execute query with decrementing sequence attribute for objects that fulfills conditions.
-	 * 
-	 * @param \Illuminate\Support\Facades\DB $query
-	 * @return void
-	 */
-	protected function decrementObjects($query)
-	{
-		$query->decrement($this->getSequenceConfig('fieldName'));		
-	}
+    /**
+     * Update sequence attribute to models with sequence number greater than delering object.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $obj
+     * @return void
+     */
+    public function updateSequences(Model $obj)
+    {
+        $this->setModel($obj);
 
-	/**
-	 * Move object one position earlier.
-	 * 
-	 * @param Model $obj
-	 * @return Model
-	 */
-	public function moveUp(Model $obj)
-	{
-		$this->setModel($obj);
-		return $this->moveObject($this->getPreviousObject());
-	}
+        $query = $this->prepareQueryWithObjectsNeedingUpdate();
+        $query = $this->fillQueryWithGroupConditions($query);
+        $this->decrementObjects($query);
+    }
 
-	/**
-	 * Move ojbect one position lower.
-	 * 
-	 * @param Model $obj
-	 * @return Model
-	 */
-	public function moveDown(Model $obj)
-	{
-		$this->setModel($obj);
-		return $this->moveObject($this->getNextObject());
-	}
+    /**
+     * Prepares query with objects stored in database with sequence number greater than deleteting object.
+     *
+     * @return \Illuminate\Support\Facades\DB
+     */
+    protected function prepareQueryWithObjectsNeedingUpdate()
+    {
+        return DB::table($this->obj->getTable())
+                    ->where($this->getSequenceConfig('fieldName'), '>', $this->obj->{$this->getSequenceConfig('fieldName')});
+    }
 
-	/**
-	 * Swap position between two objects.
-	 * 
-	 * @param Model|null $obj
-	 * @return Model
-	 * @throws ModelNotFoundException
-	 */
-	private function moveObject($secondObj)
-	{
-		if($secondObj == null) {
-			if($this->getSequenceConfig('exceptions'))
-				throw new ModelNotFoundException();
-			return $this->obj;
-		}
+    /**
+     * Execute query with decrementing sequence attribute for objects that fulfills conditions.
+     *
+     * @param \Illuminate\Support\Facades\DB $query
+     * @return void
+     */
+    protected function decrementObjects($query)
+    {
+        $query->decrement($this->getSequenceConfig('fieldName'));
+    }
 
-		$currentSequence = $this->getSequence($this->obj);
-		$this->setSequence($this->obj, $this->getSequence($secondObj));
-		$this->setSequence($secondObj, $currentSequence);
+    /**
+     * Move object one position earlier.
+     *
+     * @param Model $obj
+     * @return Model
+     */
+    public function moveUp(Model $obj)
+    {
+        $this->setModel($obj);
 
-		return $this->obj;
-	}
+        return $this->moveObject($this->getPreviousObject());
+    }
 
-	/**
-	 * Returns position of object.
-	 * 
-	 * @param Model $obj
-	 * @return Model
-	 */
-	private function getSequence($obj)
-	{
-		return $obj->{$this->getSequenceConfig('fieldName')};
-	}
+    /**
+     * Move ojbect one position lower.
+     *
+     * @param Model $obj
+     * @return Model
+     */
+    public function moveDown(Model $obj)
+    {
+        $this->setModel($obj);
 
-	/**
-	 * Sets position of object with value.
-	 * 
-	 * @param Model $obj
-	 * @param int $value
-	 * @return void
-	 */
-	private function setSequence(&$obj, $value)
-	{
-		$obj->{$this->getSequenceConfig('fieldName')} = $value;
-		$obj->save();
-	}
+        return $this->moveObject($this->getNextObject());
+    }
 
-	/**
-	 * Returns object one position earlier than base one.
-	 * 
-	 * @return Model
-	 */
-	private function getPreviousObject()
-	{
-		return $this->getNearObject(true);
-	}
+    /**
+     * Swap position between two objects.
+     *
+     * @param Model|null $obj
+     * @return Model
+     * @throws ModelNotFoundException
+     */
+    private function moveObject($secondObj)
+    {
+        if ($secondObj == null) {
+            if ($this->getSequenceConfig('exceptions')) {
+                throw new ModelNotFoundException();
+            }
+            return $this->obj;
+        }
 
-	/**
-	 * Returns object one position later than base one.
-	 * 
-	 * @return Model
-	 */
-	private function getNextObject()
-	{
-		return $this->getNearObject(false);
-	}
+        $currentSequence = $this->getSequence($this->obj);
+        $this->setSequence($this->obj, $this->getSequence($secondObj));
+        $this->setSequence($secondObj, $currentSequence);
 
-	/**
-	 * Returns object one position earlier/later than base one.
-	 * 
-	 * @param bool $earlier
-	 * @return Model
-	 */
-	private function getNearObject($earlier)
-	{
-		$currentSequence = $this->getSequence($this->obj);
-		$query = $this->prepareQuery();
-		$condition = $earlier ? '<' : '>';
+        return $this->obj;
+    }
 
-		return $query->where($this->getSequenceConfig('fieldName'), $condition, $currentSequence)
-			->sequenced($earlier ? 'desc' : 'asc')
-			->first();
-	}
+    /**
+     * Returns position of object.
+     *
+     * @param Model $obj
+     * @return Model
+     */
+    private function getSequence($obj)
+    {
+        return $obj->{$this->getSequenceConfig('fieldName')};
+    }
 
-	/**
-	 * Move object to another positon.
-	 * 
-	 * @param Model $obj
-	 * @param int $position
-	 * @return Model
-	 */
-	public function moveTo(Model $obj, $position)
-	{
-		$this->setModel($obj);
-		if(!$this->getSequenceConfig('orderFrom1'))
-			$position++;
+    /**
+     * Sets position of object with value.
+     *
+     * @param Model $obj
+     * @param int $value
+     * @return void
+     */
+    private function setSequence(&$obj, $value)
+    {
+        $obj->{$this->getSequenceConfig('fieldName')} = $value;
+        $obj->save();
+    }
 
-		$currentSequence = $this->getSequence($this->obj);
-		if($currentSequence == $position)
-			return $obj;
+    /**
+     * Returns object one position earlier than base one.
+     *
+     * @return Model
+     */
+    private function getPreviousObject()
+    {
+        return $this->getNearObject(true);
+    }
 
-		if($currentSequence < $position)
-			return $this->moveFurther($position);
+    /**
+     * Returns object one position later than base one.
+     *
+     * @return Model
+     */
+    private function getNextObject()
+    {
+        return $this->getNearObject(false);
+    }
 
-		return $this->moveEarlier($position);
-	}
+    /**
+     * Returns object one position earlier/later than base one.
+     *
+     * @param bool $earlier
+     * @return Model
+     */
+    private function getNearObject($earlier)
+    {
+        $currentSequence = $this->getSequence($this->obj);
+        $query = $this->prepareQuery();
+        $condition = $earlier ? '<' : '>';
 
-	protected function moveFurther($position)
-	{
-		$max = $this->count();
-		if($this->getSequenceConfig('exceptions') && $max < $position) {
-			throw new InvalidArgumentException("The parameter is out of range.");
-		}
+        return $query->where($this->getSequenceConfig('fieldName'), $condition, $currentSequence)
+            ->sequenced($earlier ? 'desc' : 'asc')
+            ->first();
+    }
 
-		$query = $this->prepareQuery();
-		$currentSequence = $this->getSequence($this->obj);
+    /**
+     * Move object to another positon.
+     *
+     * @param Model $obj
+     * @param int $position
+     * @return Model
+     */
+    public function moveTo(Model $obj, $position)
+    {
+        $this->setModel($obj);
+        if (! $this->getSequenceConfig('orderFrom1')) {
+            $position++;
+        }
 
-		$query->where($this->getSequenceConfig('fieldName'), '>', $currentSequence)
-			->where($this->getSequenceConfig('fieldName'), '<=', $position)
-			->sequenced()
-			->get()
-			->each
-			->decrement($this->getSequenceConfig('fieldName'));
+        $currentSequence = $this->getSequence($this->obj);
+        if ($currentSequence == $position) {
+            return $obj;
+        }
 
-		$this->setSequence($this->obj, $position <= $max ? $position : $max);
+        if ($currentSequence < $position) {
+            return $this->moveFurther($position);
+        }
 
-		return $this->obj;
-	}
+        return $this->moveEarlier($position);
+    }
 
-	protected function count()
-	{
-		return $this->prepareQuery()
-			->sequenced('desc')
-			->first()
-			->{$this->getSequenceConfig('fieldName')};
-	}
+    protected function moveFurther($position)
+    {
+        $max = $this->count();
+        if ($this->getSequenceConfig('exceptions') && $max < $position) {
+            throw new InvalidArgumentException('The parameter is out of range.');
+        }
 
-	protected function moveEarlier($position)
-	{
-		if($this->getSequenceConfig('exceptions') && $position < ($this->getSequenceConfig('orderFrom1') ? 2 : 1)) {
-			throw new InvalidArgumentException("The parameter is out of range.");
-		}
+        $query = $this->prepareQuery();
+        $currentSequence = $this->getSequence($this->obj);
 
-		$query = $this->prepareQuery();
-		$currentSequence = $this->getSequence($this->obj);
+        $query->where($this->getSequenceConfig('fieldName'), '>', $currentSequence)
+            ->where($this->getSequenceConfig('fieldName'), '<=', $position)
+            ->sequenced()
+            ->get()
+            ->each
+            ->decrement($this->getSequenceConfig('fieldName'));
 
-		$query->where($this->getSequenceConfig('fieldName'), '>=', $position)
-			->where($this->getSequenceConfig('fieldName'), '<', $currentSequence)
-			->sequenced()
-			->get()
-			->each
-			->increment($this->getSequenceConfig('fieldName'));
+        $this->setSequence($this->obj, $position <= $max ? $position : $max);
 
-		$this->setSequence($this->obj, $position < 1 ? 1 : $position);
+        return $this->obj;
+    }
 
-		return $this->obj;		
-	}
+    protected function count()
+    {
+        return $this->prepareQuery()
+            ->sequenced('desc')
+            ->first()
+            ->{$this->getSequenceConfig('fieldName')};
+    }
 
-	public function refresh($class)
-	{
-		$this->setModel(resolve($class));
-		
-		$sequences = [];
-		$field = $this->getSequenceConfig('fieldName');
+    protected function moveEarlier($position)
+    {
+        if ($this->getSequenceConfig('exceptions') && $position < ($this->getSequenceConfig('orderFrom1') ? 2 : 1)) {
+            throw new InvalidArgumentException('The parameter is out of range.');
+        }
 
-		$results = $this->obj->newQuery()
-			->sequenced()
-			->get()
-			->each(function ($item) use ($field, &$sequences) {
-				$key = $this->generateConditionsHash($item);
-				if(!isset($sequences[$key]))
-					$sequences[$key] = 1;
-				
-				$item->{$field} = $sequences[$key]++;
-				$item->save();
-			});
+        $query = $this->prepareQuery();
+        $currentSequence = $this->getSequence($this->obj);
 
-		return $this->obj;
-	}
+        $query->where($this->getSequenceConfig('fieldName'), '>=', $position)
+            ->where($this->getSequenceConfig('fieldName'), '<', $currentSequence)
+            ->sequenced()
+            ->get()
+            ->each
+            ->increment($this->getSequenceConfig('fieldName'));
 
-	protected function generateConditionsHash($item)
-	{
-		$key = '';
-		if($this->isGroupProvided() == true) {
-			$groups = $this->getSequenceConfig('group');
-			if(is_array($groups) == false)
-				$groups = [$groups];
+        $this->setSequence($this->obj, $position < 1 ? 1 : $position);
 
-			foreach($groups as $group)
-				$key .= $item->{$group} . '###';
+        return $this->obj;
+    }
 
-			return $key;
-		}
+    public function refresh($class)
+    {
+        $this->setModel(resolve($class));
 
-		return '*'; // all keys
-	}
+        $sequences = [];
+        $field = $this->getSequenceConfig('fieldName');
 
+        $results = $this->obj->newQuery()
+            ->sequenced()
+            ->get()
+            ->each(function ($item) use ($field, &$sequences) {
+                $key = $this->generateConditionsHash($item);
+                if (! isset($sequences[$key])) {
+                    $sequences[$key] = 1;
+                }
+
+                $item->{$field} = $sequences[$key]++;
+                $item->save();
+            });
+
+        return $this->obj;
+    }
+
+    protected function generateConditionsHash($item)
+    {
+        $key = '';
+        if ($this->isGroupProvided() == true) {
+            $groups = $this->getSequenceConfig('group');
+            if (is_array($groups) == false) {
+                $groups = [$groups];
+            }
+
+            foreach ($groups as $group) {
+                $key .= $item->{$group}.'###';
+            }
+
+            return $key;
+        }
+
+        return '*'; // all keys
+    }
 }

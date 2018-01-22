@@ -2,12 +2,11 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\Group;
 
-use HighSolutions\EloquentSequence\Test\Models\GroupModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\GroupModel;
 
 class MethodUpTest extends SequenceTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -94,5 +93,4 @@ class MethodUpTest extends SequenceTestCase
         $this->assertEquals(3, $model2->fresh()->seq);
         $this->assertEquals(2, $model3->fresh()->seq);
     }
-
 }
