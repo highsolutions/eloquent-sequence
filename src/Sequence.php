@@ -2,13 +2,8 @@
 
 namespace HighSolutions\EloquentSequence;
 
-use HighSolutions\EloquentSequence\SequenceObserver;
-use HighSolutions\EloquentSequence\SequenceService;
-use Illuminate\Database\Eloquent\Builder;
-
 trait Sequence
 {
-
     /**
      * Return the sequence configuration array for this model.
      *
@@ -16,18 +11,18 @@ trait Sequence
      */
     abstract public function sequence();
 
-	/**
-	 * Boot Sequence Observer for event handling.
-	 *
-	 * @return void
-	 */
-	public static function bootSequence()
-	{
-	    self::observe(SequenceObserver::class);
-	}
+    /**
+     * Boot Sequence Observer for event handling.
+     *
+     * @return void
+     */
+    public static function bootSequence()
+    {
+        self::observe(SequenceObserver::class);
+    }
 
-	/**
-     * Scope a query to order by sequence attribute
+    /**
+     * Scope a query to order by sequence attribute.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $direction Sorting order
@@ -36,6 +31,7 @@ trait Sequence
     public function scopeSequenced($query, $direction = 'asc')
     {
         $fieldName = isset($this->sequence()['fieldName']) ? $this->sequence()['fieldName'] : 'seq';
+
         return $query->orderBy($fieldName, $direction);
     }
 
@@ -104,5 +100,4 @@ trait Sequence
     {
         return (new SequenceService)->refresh(get_called_class());
     }
-
 }

@@ -6,7 +6,6 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodDownTest extends SequenceTestCase
 {
-
     /** @test */
     public function use_down_method_on_first_element()
     {
@@ -58,5 +57,4 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
         $this->assertEquals(3, $model3->fresh()->seq);
     }
-
 }

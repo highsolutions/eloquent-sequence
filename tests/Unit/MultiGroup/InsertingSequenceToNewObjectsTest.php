@@ -2,12 +2,11 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\MultiGroup;
 
-use HighSolutions\EloquentSequence\Test\Models\MultiGroupModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\MultiGroupModel;
 
 class InsertingSequenceToNewObjectsTest extends SequenceTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -56,5 +55,4 @@ class InsertingSequenceToNewObjectsTest extends SequenceTestCase
         $this->assertEquals(2, $modelBA->seq);
         $this->assertEquals(1, $modelBB->seq);
     }
-
 }

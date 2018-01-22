@@ -2,12 +2,11 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\MultiGroup;
 
-use HighSolutions\EloquentSequence\Test\Models\MultiGroupModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\MultiGroupModel;
 
 class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -102,5 +101,4 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
         $this->assertEquals(1, $modelB1->fresh()->seq);
         $this->assertEquals(2, $modelB2->fresh()->seq);
     }
-
 }

@@ -2,12 +2,11 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\OrderFrom1;
 
-use HighSolutions\EloquentSequence\Test\Models\OrderModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\OrderModel;
 
 class MethodFirstTest extends SequenceTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -52,5 +51,4 @@ class MethodFirstTest extends SequenceTestCase
         $this->assertEquals(3, $model2->fresh()->seq);
         $this->assertEquals(1, $model3->fresh()->seq);
     }
-
 }

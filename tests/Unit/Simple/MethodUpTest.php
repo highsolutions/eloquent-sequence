@@ -6,7 +6,6 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodUpTest extends SequenceTestCase
 {
-
     /** @test */
     public function use_up_method_on_first_element()
     {
@@ -44,5 +43,4 @@ class MethodUpTest extends SequenceTestCase
         $this->assertEquals(3, $model2->fresh()->seq);
         $this->assertEquals(2, $model3->fresh()->seq);
     }
-
 }

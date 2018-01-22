@@ -2,12 +2,11 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\MultiGroup;
 
-use HighSolutions\EloquentSequence\Test\Models\MultiGroupModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\MultiGroupModel;
 
 class MethodMoveTest extends SequenceTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -72,5 +71,4 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
         $this->assertEquals(3, $model4->fresh()->seq);
     }
-
 }

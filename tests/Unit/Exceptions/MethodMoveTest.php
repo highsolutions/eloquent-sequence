@@ -2,13 +2,12 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\Exceptions;
 
-use HighSolutions\EloquentSequence\Test\Models\ExceptionModel;
-use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 use Psr\Log\InvalidArgumentException;
+use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\ExceptionModel;
 
 class MethodMoveTest extends SequenceTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -59,5 +58,4 @@ class MethodMoveTest extends SequenceTestCase
         $this->expectException(InvalidArgumentException::class);
         $model2->move(-1);
     }
-
 }
