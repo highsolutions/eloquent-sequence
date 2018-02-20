@@ -1,5 +1,7 @@
-Eloquent Sequence ![CircleCI](https://circleci.com/gh/highsolutions/eloquent-sequence.svg?style=svg) ![StyleCI](https://styleci.io/repos/61547910/shield?branch=master)
+Eloquent Sequence
 ================
+
+![CircleCI](https://circleci.com/gh/highsolutions/eloquent-sequence.svg?style=svg) ![StyleCI](https://styleci.io/repos/61547910/shield?branch=L5.4) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 Easy creation and management sequence support for Eloquent models with elastic configuration.
 
@@ -18,11 +20,21 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/eloquent-sequence": "2.*"
+        "HighSolutions/eloquent-sequence": "2.4.*"
     }
 ```
 
 Run `composer update` to install the package.
+
+Version Compatibility
+----------------------
+
+ Laravel  | Eloquent-Sequence
+:---------|:----------
+ 5.1.x    | 2.1.x
+ 5.2.x    | 2.2.x
+ 5.3.x    | 2.3.x
+ 5.4.x    | 2.4.x
 
 Updating Eloquent models
 ------------------------
@@ -32,15 +44,15 @@ use HighSolutions\EloquentSequence\Sequence;
 
 class Section extends Model {
 
-	use Sequence;
+    use Sequence;
 
-	public function sequence()
-	{
-		return [
-			'group' => 'article_id',
-			'fieldName' => 'seq',
-		];
-	}
+    public function sequence()
+    {
+        return [
+            'group' => 'article_id',
+            'fieldName' => 'seq',
+        ];
+    }
 }
 ```
 
@@ -52,9 +64,9 @@ Configuration
 You can specify four parameters:
 
  - `group` - field name or field names (then input as an array) which narrows list of objects within sequence parameter will be calculated
-	 - default value: ""
+     - default value: ""
  - `fieldName` - field name in model to store sequence attribute
-	 - default value: "seq"
+     - default value: "seq"
 - `exceptions` - set this true if you want to catch exceptions during up/down methods
      - default value: false
 - `orderFrom1` - set this true if your list starts from 1 not 0 / used for move method
@@ -227,6 +239,18 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+2.4.0
+- Laravel 5.4 support
+
+2.3.0
+- Laravel 5.3 support
+
+2.2.0
+- Laravel 5.2 support
+
+2.1.0
+- Laravel 5.1 support
 
 2.0.3
 - add StyleCI and CircleCI support
