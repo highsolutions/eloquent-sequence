@@ -2,7 +2,6 @@
 
 namespace HighSolutions\EloquentSequence\Test;
 
-use Illuminate\Support\Collection;
 use HighSolutions\EloquentSequence\Test\Models\SimpleModel;
 
 abstract class SequenceTestCase extends TestCase
@@ -16,9 +15,9 @@ abstract class SequenceTestCase extends TestCase
 
     protected function create($count, $params = [])
     {
-        Collection::times($count, function ($number) use ($params) {
-            $this->newModel($params, 'Model #'.$number);
-        });
+        for ($i = 0; $i < $count; $i++) {
+            $this->newModel($params, 'Model #'.($i + 1));
+        }
     }
 
     protected function newModel($params = [], $name = null)
