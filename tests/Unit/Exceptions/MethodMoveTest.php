@@ -45,8 +45,13 @@ class MethodMoveTest extends SequenceTestCase
         $model1 = $this->newModel();
         $model2 = $this->newModel();
 
-        $this->expectException(InvalidArgumentException::class);
-        $model1->move(2);
+        try {
+            $model1->move(2);
+        } catch (InvalidArgumentException $ex) {
+            return;
+        }
+
+        $this->fail('Expected "InvalidArgumentException" to be fired. Nothing happened.');
     }
 
     /** @test */
@@ -55,7 +60,12 @@ class MethodMoveTest extends SequenceTestCase
         $model1 = $this->newModel();
         $model2 = $this->newModel();
 
-        $this->expectException(InvalidArgumentException::class);
-        $model2->move(-1);
+        try {
+            $model2->move(-1);
+        } catch (InvalidArgumentException $ex) {
+            return;
+        }
+
+        $this->fail('Expected "InvalidArgumentException" to be fired. Nothing happened.');
     }
 }

@@ -236,6 +236,7 @@ class SequenceService
             if ($this->getSequenceConfig('exceptions')) {
                 throw new ModelNotFoundException();
             }
+
             return $this->obj;
         }
 
@@ -347,8 +348,9 @@ class SequenceService
             ->where($this->getSequenceConfig('fieldName'), '<=', $position)
             ->sequenced()
             ->get()
-            ->each
-            ->decrement($this->getSequenceConfig('fieldName'));
+            ->each(function ($item) {
+                $item->decrement($this->getSequenceConfig('fieldName'));
+            });
 
         $this->setSequence($this->obj, $position <= $max ? $position : $max);
 
@@ -376,8 +378,9 @@ class SequenceService
             ->where($this->getSequenceConfig('fieldName'), '<', $currentSequence)
             ->sequenced()
             ->get()
-            ->each
-            ->increment($this->getSequenceConfig('fieldName'));
+            ->each(function ($item) {
+                $item->increment($this->getSequenceConfig('fieldName'));
+            });
 
         $this->setSequence($this->obj, $position < 1 ? 1 : $position);
 
@@ -386,7 +389,7 @@ class SequenceService
 
     public function refresh($class)
     {
-        $this->setModel(resolve($class));
+        $this->setModel(app()->make($class));
 
         $sequences = [];
         $field = $this->getSequenceConfig('fieldName');

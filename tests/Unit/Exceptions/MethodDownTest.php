@@ -33,8 +33,13 @@ class MethodDownTest extends SequenceTestCase
         $model1 = $this->newModel();
         $model2 = $this->newModel();
 
-        $this->expectException(ModelNotFoundException::class);
-        $model2->down();
+        try {
+            $model2->down();
+        } catch (ModelNotFoundException $ex) {
+            return;
+        }
+
+        $this->fail('Expected "ModelNotFoundException" to be fired. Nothing happened.');
     }
 
     /** @test */

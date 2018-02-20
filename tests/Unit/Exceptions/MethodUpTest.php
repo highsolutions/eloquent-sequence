@@ -21,8 +21,13 @@ class MethodUpTest extends SequenceTestCase
         $model1 = $this->newModel();
         $model2 = $this->newModel();
 
-        $this->expectException(ModelNotFoundException::class);
-        $model1->up();
+        try {
+            $model1->up();
+        } catch (ModelNotFoundException $ex) {
+            return;
+        }
+
+        $this->fail('Expected "ModelNotFoundException" to be fired. Nothing happened.');
     }
 
     /** @test */

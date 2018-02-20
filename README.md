@@ -1,5 +1,7 @@
-Eloquent Sequence ![CircleCI](https://circleci.com/gh/highsolutions/eloquent-sequence.svg?style=svg) ![StyleCI](https://styleci.io/repos/61547910/shield?branch=master)
+Eloquent Sequence
 ================
+
+![CircleCI](https://circleci.com/gh/highsolutions/eloquent-sequence.svg?style=svg) ![StyleCI](https://styleci.io/repos/61547910/shield?branch=L5.1) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 Easy creation and management sequence support for Eloquent models with elastic configuration.
 
@@ -18,11 +20,18 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/eloquent-sequence": "2.*"
+        "HighSolutions/eloquent-sequence": "2.1.*"
     }
 ```
 
 Run `composer update` to install the package.
+
+Version Compatibility
+----------------------
+
+ Laravel  | Eloquent-Sequence
+:---------|:----------
+ 5.1.x    | 2.1.x
 
 Updating Eloquent models
 ------------------------
@@ -227,6 +236,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+2.1.0
+- Laravel 5.1 support
 
 2.0.3
 - add StyleCI and CircleCI support
