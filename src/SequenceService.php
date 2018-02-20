@@ -236,6 +236,7 @@ class SequenceService
             if ($this->getSequenceConfig('exceptions')) {
                 throw new ModelNotFoundException();
             }
+
             return $this->obj;
         }
 
