@@ -2,7 +2,6 @@
 
 namespace HighSolutions\EloquentSequence;
 
-use Illuminate\Support\Facades\DB;
 use Psr\Log\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -48,7 +47,7 @@ class SequenceService
     /**
      * Returns default configuration of service.
      *
-     * @return bool
+     * @return array
      */
     protected function getDefaultConfiguration()
     {
@@ -178,18 +177,18 @@ class SequenceService
     /**
      * Prepares query with objects stored in database with sequence number greater than deleteting object.
      *
-     * @return \Illuminate\Support\Facades\DB
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function prepareQueryWithObjectsNeedingUpdate()
     {
-        return DB::table($this->obj->getTable())
-                    ->where($this->getSequenceConfig('fieldName'), '>', $this->obj->{$this->getSequenceConfig('fieldName')});
+        return $this->obj->newQuery()
+            ->where($this->getSequenceConfig('fieldName'), '>', $this->obj->{$this->getSequenceConfig('fieldName')});
     }
 
     /**
      * Execute query with decrementing sequence attribute for objects that fulfills conditions.
      *
-     * @param \Illuminate\Support\Facades\DB $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return void
      */
     protected function decrementObjects($query)
@@ -226,11 +225,11 @@ class SequenceService
     /**
      * Swap position between two objects.
      *
-     * @param Model|null $obj
+     * @param Model|null $secondObj
      * @return Model
      * @throws ModelNotFoundException
      */
-    private function moveObject($secondObj)
+    private function moveObject($secondObj = null)
     {
         if ($secondObj == null) {
             if ($this->getSequenceConfig('exceptions')) {
