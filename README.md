@@ -73,6 +73,8 @@ You can specify four parameters:
      - default value: false
 - `orderFrom1` - set this true if your list starts from 1 not 0 / used for move method
      - default value: false
+- `notUpdateOnDelete` - set this true if you don't want to update sequence attributes when delete an object
+     - default value: false    
 
 Usage
 -----
@@ -241,6 +243,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+2.6.1
+- Add `NotUpdateOnDelete` configuration parameter
 
 2.6.0
 - Laravel 5.6 support

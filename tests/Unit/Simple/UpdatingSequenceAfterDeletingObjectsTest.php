@@ -2,6 +2,7 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\Simple;
 
+use HighSolutions\EloquentSequence\Test\Models\NotUpdateModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
@@ -44,5 +45,20 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
 
         $this->assertEquals(1, $model2->fresh()->seq);
         $this->assertEquals(2, $model3->fresh()->seq);
+    }
+
+    /** @test */
+    public function not_update_next_objects_after_deleting_when_config_up()
+    {
+        $this->setClass(NotUpdateModel::class);
+
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+        $model3 = $this->newModel();
+
+        $model1->delete();
+
+        $this->assertEquals(2, $model2->fresh()->seq);
+        $this->assertEquals(3, $model3->fresh()->seq);
     }
 }

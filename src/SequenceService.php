@@ -94,13 +94,16 @@ class SequenceService
      * @param string $key
      * @return mixed
      */
-    protected function getSequenceConfig($key)
+    protected function getSequenceConfig($key, $fireException = true)
     {
         if (isset($this->config[$key])) {
             return $this->config[$key];
         }
 
-        throw new InvalidArgumentException("There is no specific key ({$key}) in Sequence configuration.");
+        if($fireException)
+            throw new InvalidArgumentException("There is no specific key ({$key}) in Sequence configuration.");
+
+        return null;
     }
 
     /**
@@ -161,7 +164,7 @@ class SequenceService
     }
 
     /**
-     * Update sequence attribute to models with sequence number greater than delering object.
+     * Update sequence attribute to models with sequence number greater than deleted object.
      *
      * @param \Illuminate\Database\Eloquent\Model $obj
      * @return void
@@ -169,6 +172,9 @@ class SequenceService
     public function updateSequences(Model $obj)
     {
         $this->setModel($obj);
+
+        if($this->getSequenceConfig('notUpdateOnDelete', false))
+            return;
 
         $query = $this->prepareQueryWithObjectsNeedingUpdate();
         $query = $this->fillQueryWithGroupConditions($query);
