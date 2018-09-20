@@ -20,7 +20,7 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/eloquent-sequence": "2.6.*"
+        "HighSolutions/eloquent-sequence": "3.0.*"
     }
 ```
 
@@ -37,6 +37,7 @@ Version Compatibility
  5.4.x    | 2.4.x
  5.5.x    | 2.5.x
  5.6.x    | 2.6.x
+ 5.x.x    | 3.0.x  
 
 Updating Eloquent models
 ------------------------
@@ -244,7 +245,10 @@ vendor/bin/phpunit
 Changelog
 ---------
 
-2.6.1
+3.0.0
+- Support all Laravel 5.x versions
+
+2.6.2
 - Add `NotUpdateOnDelete` configuration parameter
 
 2.6.0
