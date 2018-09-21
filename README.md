@@ -36,7 +36,8 @@ Version Compatibility
  5.3.x    | 2.3.x
  5.4.x    | 2.4.x
  5.5.x    | 2.5.x
- 5.6.x    | 2.6.x
+ 5.6.x    | 2.6.2
+ 5.7.x    | 2.6.3+
 
 Updating Eloquent models
 ------------------------
@@ -244,7 +245,10 @@ vendor/bin/phpunit
 Changelog
 ---------
 
-2.6.1
+2.6.3
+- Improve dependencies to support other framework versions
+
+2.6.2
 - Add `NotUpdateOnDelete` configuration parameter
 
 2.6.0
