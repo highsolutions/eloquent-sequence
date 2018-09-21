@@ -2,8 +2,8 @@
 
 namespace HighSolutions\EloquentSequence\Test\Unit\Simple;
 
-use HighSolutions\EloquentSequence\Test\Models\NotUpdateModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
+use HighSolutions\EloquentSequence\Test\Models\NotUpdateModel;
 
 class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
 {

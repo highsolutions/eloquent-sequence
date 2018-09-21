@@ -99,10 +99,9 @@ class SequenceService
             return $this->config[$key];
         }
 
-        if($fireException)
+        if ($fireException) {
             throw new InvalidArgumentException("There is no specific key ({$key}) in Sequence configuration.");
-
-        return null;
+        }
     }
 
     /**
@@ -172,8 +171,9 @@ class SequenceService
     {
         $this->setModel($obj);
 
-        if($this->getSequenceConfig('notUpdateOnDelete', false))
+        if ($this->getSequenceConfig('notUpdateOnDelete', false)) {
             return;
+        }
 
         $query = $this->prepareQueryWithObjectsNeedingUpdate();
         $query = $this->fillQueryWithGroupConditions($query);
