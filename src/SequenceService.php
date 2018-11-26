@@ -352,8 +352,6 @@ class SequenceService
         $query->where($this->getSequenceConfig('fieldName'), '>', $currentSequence)
             ->where($this->getSequenceConfig('fieldName'), '<=', $position)
             ->sequenced()
-            ->get()
-            ->each
             ->decrement($this->getSequenceConfig('fieldName'));
 
         $this->setSequence($this->obj, $position <= $max ? $position : $max);
@@ -381,8 +379,6 @@ class SequenceService
         $query->where($this->getSequenceConfig('fieldName'), '>=', $position)
             ->where($this->getSequenceConfig('fieldName'), '<', $currentSequence)
             ->sequenced()
-            ->get()
-            ->each
             ->increment($this->getSequenceConfig('fieldName'));
 
         $this->setSequence($this->obj, $position < 1 ? 1 : $position);

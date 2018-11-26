@@ -245,6 +245,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+3.0.2
+- Little performance improvements
+
 3.0.0
 - Support all Laravel 5.x versions
 
