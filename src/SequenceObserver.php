@@ -33,6 +33,17 @@ class SequenceObserver
     }
 
     /**
+     * Listen to the Sequence updating event.
+     *
+     * @param Model $obj
+     * @return void
+     */
+    public function updating(Model $obj)
+    {
+        $this->service->updateSequencesOnGroupChange($obj);
+    }
+
+    /**
      * Listen to the Sequence deleting event.
      *
      * @param Model $obj
@@ -40,6 +51,6 @@ class SequenceObserver
      */
     public function deleting(Model $obj)
     {
-        $this->service->updateSequences($obj);
+        $this->service->updateSequencesOnDelete($obj);
     }
 }

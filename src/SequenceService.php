@@ -68,7 +68,7 @@ class SequenceService
     public function assignSequence(Model $obj)
     {
         $this->setModel($obj);
-
+        
         if ($this->isAlreadyAssigned() == true) {
             return;
         }
@@ -163,21 +163,32 @@ class SequenceService
     }
 
     /**
+     * Update sequence attribute to models when deleted or group changed.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $obj
+     * @return void
+     */
+    public function updateSequences()
+    {
+        $query = $this->prepareQueryWithObjectsNeedingUpdate();
+        $query = $this->fillQueryWithGroupConditions($query);
+        $this->decrementObjects($query);
+    }
+
+    /**
      * Update sequence attribute to models with sequence number greater than deleted object.
      *
      * @param \Illuminate\Database\Eloquent\Model $obj
      * @return void
      */
-    public function updateSequences(Model $obj)
+    public function updateSequencesonDelete(Model $obj)
     {
         $this->setModel($obj);
 
         if($this->getSequenceConfig('notUpdateOnDelete', false))
             return;
 
-        $query = $this->prepareQueryWithObjectsNeedingUpdate();
-        $query = $this->fillQueryWithGroupConditions($query);
-        $this->decrementObjects($query);
+        $this->updateSequences();
     }
 
     /**
@@ -426,5 +437,43 @@ class SequenceService
         }
 
         return '*'; // all keys
+    }
+
+    /**
+     * Update sequence attribute to models with sequence number greater than moved out object.
+     * Assign sequence attribute to model in new group.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $obj
+     * @return void
+     */
+    public function updateSequencesOnGroupChange(Model $obj)
+    {
+        $this->setModel($obj);
+
+        if ($this->isGroupProvided() == false)
+            return;
+
+        $groups = $this->getSequenceConfig('group');
+        if (is_array($groups) == false) {
+            $groups = [$groups];
+        }
+
+        if (!$obj->isDirty($groups))
+            return;
+
+        $newGroups = [];
+        foreach ($groups as $group) {
+            $newGroups[$group] = $this->obj->{$group};
+            $this->obj->{$group} = $this->obj->getOriginal($group);
+        }
+
+        $this->updateSequences();
+
+        foreach ($groups as $group) {
+            $this->obj->{$group} = $newGroups[$group];
+        }
+
+        $obj->{$this->getSequenceConfig('fieldName')} = 0;
+        $this->assignSequence($obj);
     }
 }
