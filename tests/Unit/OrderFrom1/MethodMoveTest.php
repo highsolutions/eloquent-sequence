@@ -8,7 +8,7 @@ use HighSolutions\EloquentSequence\Test\Models\OrderModel;
 
 class MethodMoveTest extends SequenceTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

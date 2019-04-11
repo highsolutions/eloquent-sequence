@@ -1,13 +1,13 @@
 <?php
 
-namespace HighSolutions\EloquentSequence\Test\Unit\Group;
+namespace HighSolutions\EloquentSequence\Test\Unit\MultiGroup;
 
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 use HighSolutions\EloquentSequence\Test\Models\GroupModel;
 
 class UpdatingSequencesAfterChangingObjectsGroupTest extends SequenceTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
