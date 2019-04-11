@@ -68,7 +68,7 @@ class SequenceService
     public function assignSequence(Model $obj)
     {
         $this->setModel($obj);
-        
+
         if ($this->isAlreadyAssigned() == true) {
             return;
         }
@@ -99,7 +99,7 @@ class SequenceService
             return $this->config[$key];
         }
 
-        if($fireException)
+        if ($fireException)
             throw new InvalidArgumentException("There is no specific key ({$key}) in Sequence configuration.");
 
         return null;
@@ -185,8 +185,9 @@ class SequenceService
     {
         $this->setModel($obj);
 
-        if($this->getSequenceConfig('notUpdateOnDelete', false))
+        if ($this->getSequenceConfig('notUpdateOnDelete', false)) {
             return;
+        }
 
         $this->updateSequences();
     }
@@ -450,16 +451,18 @@ class SequenceService
     {
         $this->setModel($obj);
 
-        if ($this->isGroupProvided() == false)
+        if ($this->isGroupProvided() == false) {
             return;
+        }
 
         $groups = $this->getSequenceConfig('group');
         if (is_array($groups) == false) {
             $groups = [$groups];
         }
 
-        if (!$obj->isDirty($groups))
+        if (!$obj->isDirty($groups)) {
             return;
+        }
 
         $newGroups = [];
         foreach ($groups as $group) {
