@@ -99,8 +99,9 @@ class SequenceService
             return $this->config[$key];
         }
 
-        if ($fireException)
+        if ($fireException) {
             throw new InvalidArgumentException("There is no specific key ({$key}) in Sequence configuration.");
+        }
 
         return null;
     }
@@ -460,7 +461,7 @@ class SequenceService
             $groups = [$groups];
         }
 
-        if (!$obj->isDirty($groups)) {
+        if (! $obj->isDirty($groups)) {
             return;
         }
 
