@@ -7,7 +7,7 @@ use HighSolutions\EloquentSequence\Test\Models\OrderModel;
 
 class MethodFirstTest extends SequenceTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

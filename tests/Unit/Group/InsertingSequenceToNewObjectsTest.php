@@ -7,7 +7,7 @@ use HighSolutions\EloquentSequence\Test\Models\GroupModel;
 
 class InsertingSequenceToNewObjectsTest extends SequenceTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

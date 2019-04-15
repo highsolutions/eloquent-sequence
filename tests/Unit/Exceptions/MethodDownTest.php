@@ -8,7 +8,7 @@ use HighSolutions\EloquentSequence\Test\Models\ExceptionModel;
 
 class MethodDownTest extends SequenceTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
