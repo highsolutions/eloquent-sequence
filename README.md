@@ -245,6 +245,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+3.1.0
+- Possiblity to change group of exisitng object [#16]
+
 3.0.2
 - Little performance improvements
 
