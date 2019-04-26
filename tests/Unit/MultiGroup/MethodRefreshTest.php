@@ -7,7 +7,7 @@ use HighSolutions\EloquentSequence\Test\Models\MultiGroupModel;
 
 class MethodRefreshTest extends SequenceTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
