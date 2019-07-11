@@ -67,7 +67,7 @@ class MethodLastTest extends SequenceTestCase
     }
 
     /** @test */
-    function use_last_method_on_first_element_with_wrong_sequence_with_the_same_group()
+    public function use_last_method_on_first_element_with_wrong_sequence_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A', 'seq' => 2]);
         $model2 = $this->newModel(['group' => 'A', 'group2' => 'A', 'seq' => 4]);
@@ -139,7 +139,7 @@ class MethodLastTest extends SequenceTestCase
     }
 
     /** @test */
-    function use_last_method_on_first_element_with_wrong_sequence_with_different_groups()
+    public function use_last_method_on_first_element_with_wrong_sequence_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A', 'seq' => 2]);
         $modelb1 = $this->newModel(['group' => 'B', 'group2' => 'A', 'seq' => 1]);

@@ -59,7 +59,7 @@ class MethodLastTest extends SequenceTestCase
     }
 
     /** @test */
-    function use_last_method_on_first_element_with_wrong_sequence()
+    public function use_last_method_on_first_element_with_wrong_sequence()
     {
         $model1 = $this->newModel(['seq' => 2]);
         $model2 = $this->newModel(['seq' => 4]);
