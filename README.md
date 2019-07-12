@@ -245,6 +245,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+3.2.0
+- Fix `moveToLast` method
+
 3.1.0
 - Possiblity to change group of exisitng object [#16]
 
