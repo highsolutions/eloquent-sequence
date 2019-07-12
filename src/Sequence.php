@@ -88,7 +88,7 @@ trait Sequence
      */
     public function moveToLast()
     {
-        return (new SequenceService)->moveTo($this, $this->count());
+        return (new SequenceService)->moveToLast($this);
     }
 
     /**

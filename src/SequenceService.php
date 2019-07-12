@@ -352,6 +352,15 @@ class SequenceService
         return $this->moveEarlier($position);
     }
 
+    public function moveToLast(Model $obj)
+    {
+        $this->setModel($obj);
+        $query = $this->prepareQuery();
+        $query = $this->fillQueryWithGroupConditions($query);
+
+        return $this->moveTo($obj, $query->max($this->getSequenceConfig('fieldName')));
+    }
+
     protected function moveFurther($position)
     {
         $max = $this->count();

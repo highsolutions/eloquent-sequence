@@ -57,4 +57,18 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
         $this->assertEquals(2, $model3->fresh()->seq);
     }
+
+    /** @test */
+    public function use_last_method_on_first_element_with_wrong_sequence()
+    {
+        $model1 = $this->newModel(['seq' => 2]);
+        $model2 = $this->newModel(['seq' => 4]);
+        $model3 = $this->newModel(['seq' => 5]);
+
+        $model1->moveToLast();
+
+        $this->assertEquals(5, $model1->fresh()->seq);
+        $this->assertEquals(3, $model2->fresh()->seq);
+        $this->assertEquals(4, $model3->fresh()->seq);
+    }
 }
