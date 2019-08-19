@@ -286,7 +286,14 @@ class SequenceService
     private function setSequence(&$obj, $value)
     {
         $obj->{$this->getSequenceConfig('fieldName')} = $value;
+        $disableTimestamps = $this->getSequenceConfig('disableTimestamps', false);
+
+        $timestamps = $obj->timestamps;
+        if ($disableTimestamps) $obj->timestamps = false;
+
         $obj->save();
+
+        $obj->timestamps = $timestamps;
     }
 
     /**
@@ -370,6 +377,10 @@ class SequenceService
 
         $query = $this->prepareQuery();
         $currentSequence = $this->getSequence($this->obj);
+        $disableTimestamps = $this->getSequenceConfig('disableTimestamps', false);
+
+        $timestamps = $this->obj->timestamps;
+        if ($disableTimestamps) $this->obj->timestamps = false;
 
         $query->where($this->getSequenceConfig('fieldName'), '>', $currentSequence)
             ->where($this->getSequenceConfig('fieldName'), '<=', $position)
@@ -377,6 +388,8 @@ class SequenceService
             ->decrement($this->getSequenceConfig('fieldName'));
 
         $this->setSequence($this->obj, $position <= $max ? $position : $max);
+
+        $this->obj->timestamps = $timestamps;
 
         return $this->obj;
     }
@@ -397,6 +410,10 @@ class SequenceService
 
         $query = $this->prepareQuery();
         $currentSequence = $this->getSequence($this->obj);
+        $disableTimestamps = $this->getSequenceConfig('disableTimestamps', false);
+
+        $timestamps = $this->obj->timestamps;
+        if ($disableTimestamps) $this->obj->timestamps = false;
 
         $query->where($this->getSequenceConfig('fieldName'), '>=', $position)
             ->where($this->getSequenceConfig('fieldName'), '<', $currentSequence)
@@ -404,6 +421,8 @@ class SequenceService
             ->increment($this->getSequenceConfig('fieldName'));
 
         $this->setSequence($this->obj, $position < 1 ? 1 : $position);
+
+        $this->obj->timestamps = $timestamps;
 
         return $this->obj;
     }
@@ -414,18 +433,25 @@ class SequenceService
 
         $sequences = [];
         $field = $this->getSequenceConfig('fieldName');
+        $disableTimestamps = $this->getSequenceConfig('disableTimestamps', false);
 
         $results = $this->obj->newQuery()
             ->sequenced()
             ->get()
-            ->each(function ($item) use ($field, &$sequences) {
+            ->each(function ($item) use ($field, &$sequences, $disableTimestamps) {
                 $key = $this->generateConditionsHash($item);
                 if (! isset($sequences[$key])) {
                     $sequences[$key] = 1;
                 }
 
                 $item->{$field} = $sequences[$key]++;
+
+                $timestamps = $item->timestamps;
+                if ($disableTimestamps) $item->timestamps = false;
+
                 $item->save();
+                
+                $item->timestamps = $timestamps;
             });
 
         return $this->obj;
