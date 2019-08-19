@@ -75,6 +75,8 @@ You can specify four parameters:
 - `orderFrom1` - set this true if your list starts from 1 not 0 / used for move method
      - default value: false
 - `notUpdateOnDelete` - set this true if you don't want to update sequence attributes when delete an object
+     - default value: false
+- `disableTimestamps` - set this to true if you don't want to update the "updated_at" attribute when using sequence methods
      - default value: false    
 
 Usage
