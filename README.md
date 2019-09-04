@@ -37,7 +37,8 @@ Version Compatibility
  5.4.x    | 2.4.x
  5.5.x    | 2.5.x
  5.6.x    | 2.6.x
- 5.x.x    | 3.0.x  
+ 5.x.x    | 3.3.x  
+ 6.x.x    | 3.4.x  
 
 Updating Eloquent models
 ------------------------
@@ -246,6 +247,12 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+3.4.0
+- Support Laravel 6.0 version
+
+3.3.0
+- Option to prevent update `updated_at` timestamp during resequencing
 
 3.2.0
 - Fix `moveToLast` method
