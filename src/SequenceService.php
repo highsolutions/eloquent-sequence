@@ -212,7 +212,14 @@ class SequenceService
      */
     protected function decrementObjects($query)
     {
+        $disableTimestamps = $this->getSequenceConfig('disableTimestamps', false);
+
+        $timestamps = $this->obj->timestamps;
+        if ($disableTimestamps) $this->obj->timestamps = false;
+
         $query->decrement($this->getSequenceConfig('fieldName'));
+
+        $this->obj->timestamps = $timestamps;
     }
 
     /**

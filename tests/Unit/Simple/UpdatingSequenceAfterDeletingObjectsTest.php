@@ -3,6 +3,7 @@
 namespace HighSolutions\EloquentSequence\Test\Unit\Simple;
 
 use HighSolutions\EloquentSequence\Test\Models\NotUpdateModel;
+use HighSolutions\EloquentSequence\Test\Models\TimestampsDisabledModel;
 use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
@@ -60,5 +61,39 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
 
         $this->assertEquals(2, $model2->fresh()->seq);
         $this->assertEquals(3, $model3->fresh()->seq);
+    }
+
+    /** @test */
+    public function update_timestamps_of_next_objects_after_deleting_by_default()
+    {
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+        $model3 = $this->newModel();
+
+        sleep(1);   // needed to have delay between creation and update
+
+        $model1->delete();
+
+        $this->assertNotEquals($model2->created_at, $model2->fresh()->updated_at);
+        $this->assertNotEquals($model3->created_at, $model3->fresh()->updated_at);
+    }
+
+    /** @test */
+    public function not_update_timestamps_of_next_objects_after_deleting_when_config_up()
+    {
+        $this->setClass(TimestampsDisabledModel::class);
+
+        $model1 = $this->newModel();
+        $model2 = $this->newModel();
+        $model3 = $this->newModel();
+
+        sleep(1);   // needed to have delay between creation and update
+
+        $model1->delete();
+
+        $this->assertEquals(1, $model2->fresh()->seq);
+        $this->assertEquals(2, $model3->fresh()->seq);
+        $this->assertEquals($model2->created_at, $model2->fresh()->updated_at);
+        $this->assertEquals($model3->created_at, $model3->fresh()->updated_at);
     }
 }
