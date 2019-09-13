@@ -91,6 +91,11 @@ class MethodMoveTest extends SequenceTestCase
 
         $model2->move(3);
 
+        $this->assertEquals(1, $model1->fresh()->seq);
+        $this->assertEquals(4, $model2->fresh()->seq);
+        $this->assertEquals(2, $model3->fresh()->seq);
+        $this->assertEquals(3, $model4->fresh()->seq);
+
         $this->assertEquals($model1->created_at, $model1->fresh()->updated_at);
         $this->assertEquals($model2->created_at, $model2->fresh()->updated_at);
         $this->assertEquals($model3->created_at, $model3->fresh()->updated_at);
