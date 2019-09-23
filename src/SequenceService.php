@@ -457,7 +457,7 @@ class SequenceService
                 if ($disableTimestamps) $item->timestamps = false;
 
                 $item->save();
-                
+
                 $item->timestamps = $timestamps;
             });
 
@@ -521,5 +521,35 @@ class SequenceService
 
         $obj->{$this->getSequenceConfig('fieldName')} = 0;
         $this->assignSequence($obj);
+    }
+
+    /**
+     * Check if object is first in sequence.
+     *
+     * @param Model $obj
+     * @return Model
+     */
+    public function isFirst(Model $obj)
+    {
+        $this->setModel($obj);
+
+        return $this->getSequence($this->obj) == 1;
+    }
+
+    /**
+     * Check if object is last in sequence.
+     *
+     * @param Model $obj
+     * @return Model
+     */
+    public function isLast(Model $obj)
+    {
+        $this->setModel($obj);
+
+        if ($this->getNearObject(false)) {
+            return false;
+        }
+
+        return true;
     }
 }
