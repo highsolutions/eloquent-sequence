@@ -120,7 +120,7 @@ trait Sequence
      */
     public function isNotFirst()
     {
-        return !(new SequenceService)->isFirst($this);
+        return ! (new SequenceService)->isFirst($this);
     }
 
     /**
@@ -142,7 +142,7 @@ trait Sequence
      */
     public function isNotLast()
     {
-        return !(new SequenceService)->isLast($this);
+        return ! (new SequenceService)->isLast($this);
     }
 
 }
