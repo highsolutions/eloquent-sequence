@@ -288,8 +288,11 @@ vendor/bin/phpunit
 Changelog
 ---------
 
-3.5.0
+3.6.0
 - Add `isFirst`, `isNotFirst`, `isLast`, `isNotLast` method
+
+3.5.0
+- Fix to 3.3.0 relase - improved preventing timepstamp during resequencing
 
 3.4.0
 - Support Laravel 6.0 version
