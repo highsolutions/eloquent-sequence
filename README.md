@@ -20,7 +20,7 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/eloquent-sequence": "3.0.*"
+        "HighSolutions/eloquent-sequence": "3.*"
     }
 ```
 
@@ -236,6 +236,46 @@ Section::refreshSequence();
 
 This static method will recalculate sequence attributes for every record for this model. Narrowing groups will be used as well as current sequence attribute of every record.
 
+Check if object is first in the collection
+---------------------------
+
+You are able to check if object is first in its group.
+```php
+Section::find(2)->isFirst();
+```
+
+This will return true or false regarding is this a first element in the collection.
+
+Check if object is not first in the collection
+---------------------------
+
+You are able to check if object is not first in its group.
+```php
+Section::find(2)->isNotFirst();
+```
+
+This will return true or false regarding is this not a first element in the collection.
+
+Check if object is last in the collection
+---------------------------
+
+You are able to check if object is last in its group.
+```php
+Section::find(2)->isLast();
+```
+
+This will return true or false regarding is this a last element in the collection.
+
+Check if object is not last in the collection
+---------------------------
+
+You are able to check if object is not last in its group.
+```php
+Section::find(2)->isNotLast();
+```
+
+This will return true or false regarding is this not a last element in the collection.
+
 Testing
 ---------
 
@@ -247,6 +287,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+3.5.0
+- Add `isFirst`, `isNotFirst`, `isLast`, `isNotLast` method
 
 3.4.0
 - Support Laravel 6.0 version
