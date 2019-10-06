@@ -100,4 +100,49 @@ trait Sequence
     {
         return (new SequenceService)->refresh(get_called_class());
     }
+
+    /**
+     * Check if object is first in sequence.
+     *
+     * @return Model
+     * @throws ModelNotFoundException
+     */
+    public function isFirst()
+    {
+        return (new SequenceService)->isFirst($this);
+    }
+
+    /**
+     * Check if object is not first in sequence.
+     *
+     * @return Model
+     * @throws ModelNotFoundException
+     */
+    public function isNotFirst()
+    {
+        return ! (new SequenceService)->isFirst($this);
+    }
+
+    /**
+     * Check if object is last in sequence.
+     *
+     * @return Model
+     * @throws ModelNotFoundException
+     */
+    public function isLast()
+    {
+        return (new SequenceService)->isLast($this);
+    }
+
+    /**
+     * Check if object is not last in sequence.
+     *
+     * @return Model
+     * @throws ModelNotFoundException
+     */
+    public function isNotLast()
+    {
+        return ! (new SequenceService)->isLast($this);
+    }
+
 }
