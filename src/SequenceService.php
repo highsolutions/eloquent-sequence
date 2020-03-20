@@ -508,9 +508,10 @@ class SequenceService
         }
 
         $newGroups = [];
+        $getOriginalMethod = method_exists($this->obj, 'getRawOriginal') ? 'getRawOriginal' : 'getOriginal';
         foreach ($groups as $group) {
             $newGroups[$group] = $this->obj->{$group};
-            $this->obj->{$group} = $this->obj->getOriginal($group);
+            $this->obj->{$group} = $this->obj->{$getOriginalMethod}($group);
         }
 
         $this->updateSequences();
