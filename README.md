@@ -1,7 +1,7 @@
 Eloquent Sequence
 ================
 
-![CircleCI](https://circleci.com/gh/highsolutions/eloquent-sequence.svg?style=svg) ![StyleCI](https://styleci.io/repos/61547910/shield?branch=master) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 Easy creation and management sequence support for Eloquent models with elastic configuration.
 
@@ -39,7 +39,8 @@ Version Compatibility
  5.6.x    | 2.6.x
  5.x.x    | 3.3.x  
  6.x.x    | 3.4.x  
- 7.x.x    | 3.7.x  
+ 7.x.x    | 3.7.x
+ 8.x.x    | 3.8.x  
 
 Updating Eloquent models
 ------------------------
