@@ -20,7 +20,7 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/eloquent-sequence": "3.*"
+        "highsolutions/eloquent-sequence": "3.*"
     }
 ```
 
