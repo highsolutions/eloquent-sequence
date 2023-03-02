@@ -42,6 +42,7 @@ Version Compatibility
  7.x.x    | 3.7.x
  8.x.x    | 3.8.x  
  9.x.x    | 3.9.x  
+ 10.x.x   | 3.10.x  
 
 Updating Eloquent models
 ------------------------
@@ -290,6 +291,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+3.10.0
+- Laravel 10 support
 
 3.9.0
 - Laravel 9 support
