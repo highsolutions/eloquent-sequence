@@ -1,39 +1,53 @@
 {
-    "name": "highsolutions/eloquent-sequence",
-    "description": "A Laravel package for easy creation and management sequence support for Eloquent models with elastic configuration.",
-    "keywords": ["laravel", "sequence", "eloquent", "model", "order"],
-    "authors": [
-        {
-            "name": "HighSolutions",
-            "email": "adam@highsolutions.pl"
-        }
-    ],
-    "license": "MIT",
-    "require": {
-        "php": ">=7.1.3|>=8.0.2",
-        "illuminate/support": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "6.*|7.*|8.*|9.*|10.*",
-        "orchestra/testbench" : "3.*|4.*|5.*|6.*|7.*|8.*",
-        "mockery/mockery": "^1.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "HighSolutions\\EloquentSequence\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "HighSolutions\\EloquentSequence\\Test\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit"
-    },
-    "extra": {
-        "component": "package",
-        "frameworks": ["Laravel 5.x", "Laravel 6.x", "Laravel 7.x", "Laravel 8.x", "Laravel 9.x", "Laravel 10.x"]
-    },
-    "minimum-stability": "stable"
+  "name": "highsolutions/eloquent-sequence",
+  "description": "A Laravel package for easy creation and management sequence support for Eloquent models with elastic configuration.",
+  "keywords": [
+    "laravel",
+    "sequence",
+    "eloquent",
+    "model",
+    "order"
+  ],
+  "authors": [
+    {
+      "name": "HighSolutions",
+      "email": "adam@highsolutions.pl"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1.3|>=8.0.2",
+    "illuminate/support": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.*|7.*|8.*|9.*|10.*|11.*",
+    "orchestra/testbench": "3.*|4.*|5.*|6.*|7.*|8.*|9.*",
+    "mockery/mockery": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "HighSolutions\\EloquentSequence\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HighSolutions\\EloquentSequence\\Test\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "extra": {
+    "component": "package",
+    "frameworks": [
+      "Laravel 5.x",
+      "Laravel 6.x",
+      "Laravel 7.x",
+      "Laravel 8.x",
+      "Laravel 9.x",
+      "Laravel 10.x",
+      "Laravel 11.x"
+    ]
+  },
+  "minimum-stability": "stable"
 }
