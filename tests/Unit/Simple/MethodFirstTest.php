@@ -7,7 +7,7 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodFirstTest extends SequenceTestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_first_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -19,7 +19,7 @@ class MethodFirstTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_first_method_on_second_element()
     {
         $model1 = $this->newModel();
@@ -31,7 +31,7 @@ class MethodFirstTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_first_method_on_third_element()
     {
         $model1 = $this->newModel();
@@ -45,7 +45,7 @@ class MethodFirstTest extends SequenceTestCase
         $this->assertEquals(1, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function update_timestamps_on_first_by_default()
     {
         $model1 = $this->newModel();
@@ -59,7 +59,7 @@ class MethodFirstTest extends SequenceTestCase
         $this->assertNotEquals($model2->created_at, $model2->fresh()->updated_at);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function not_update_timestamps_on_first_when_config_up()
     {
         $this->setClass(TimestampsDisabledModel::class);

@@ -15,7 +15,7 @@ class MethodUpTest extends SequenceTestCase
         $this->setClass(ExceptionModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_up_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -25,7 +25,7 @@ class MethodUpTest extends SequenceTestCase
         $model1->up();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_up_method_on_second_element()
     {
         $model1 = $this->newModel();
@@ -37,7 +37,7 @@ class MethodUpTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_up_method_on_third_element()
     {
         $model1 = $this->newModel();

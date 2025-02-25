@@ -4,7 +4,7 @@ namespace HighSolutions\EloquentSequence\Test;
 
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-abstract class TestCase extends OrchestraTestCase
+class TestCase extends OrchestraTestCase
 {
     public function setUp(): void
     {

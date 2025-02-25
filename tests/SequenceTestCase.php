@@ -5,7 +5,7 @@ namespace HighSolutions\EloquentSequence\Test;
 use Illuminate\Support\Collection;
 use HighSolutions\EloquentSequence\Test\Models\SimpleModel;
 
-abstract class SequenceTestCase extends TestCase
+class SequenceTestCase extends TestCase
 {
     protected $class = SimpleModel::class;
 

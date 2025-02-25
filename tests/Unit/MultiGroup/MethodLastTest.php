@@ -14,7 +14,7 @@ class MethodLastTest extends SequenceTestCase
         $this->setClass(MultiGroupModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -26,7 +26,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_last_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -38,7 +38,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_second_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -52,7 +52,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element_with_3_elements_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -66,7 +66,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element_with_wrong_sequence_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A', 'seq' => 2]);
@@ -80,7 +80,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(4, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -93,7 +93,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_last_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -106,7 +106,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_second_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -122,7 +122,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element_with_3_elements_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -138,7 +138,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element_with_wrong_sequence_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A', 'seq' => 2]);

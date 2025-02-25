@@ -14,7 +14,7 @@ class UpdatingSequencesAfterChangingObjectsGroupTest extends SequenceTestCase
         $this->setClass(GroupModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_1_to_second_object_when_first_is_moved_to_an_other_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -28,7 +28,7 @@ class UpdatingSequencesAfterChangingObjectsGroupTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_2_to_third_object_when_second_is_moved_to_an_other_group()
     {
         $this->newModel(['group' => 'A']);
@@ -43,7 +43,7 @@ class UpdatingSequencesAfterChangingObjectsGroupTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_1_to_first_object_when_moved_to_an_empty_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -57,7 +57,7 @@ class UpdatingSequencesAfterChangingObjectsGroupTest extends SequenceTestCase
         $this->assertEquals(1, $model1->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_1_to_second_object_when_moved_to_an_empty_group()
     {
         $this->newModel(['group' => 'A']);
@@ -71,7 +71,7 @@ class UpdatingSequencesAfterChangingObjectsGroupTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_1_to_third_object_when_moved_to_an_empty_group()
     {
         $this->newModel(['group' => 'A']);
@@ -86,7 +86,7 @@ class UpdatingSequencesAfterChangingObjectsGroupTest extends SequenceTestCase
         $this->assertEquals(1, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_2_to_first_object_when_moved_to_a_not_empty_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -101,7 +101,7 @@ class UpdatingSequencesAfterChangingObjectsGroupTest extends SequenceTestCase
         $this->assertEquals(2, $model1->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_2_to_second_object_when_moved_to_a_not_empty_group()
     {
         $this->newModel(['group' => 'A']);

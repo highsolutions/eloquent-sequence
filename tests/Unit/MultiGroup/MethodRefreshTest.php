@@ -14,7 +14,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->setClass(MultiGroupModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_proper_collection_with_one_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -26,7 +26,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_proper_not_ordered_collection_with_one_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -39,7 +39,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_incorrect_collection_with_one_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -53,7 +53,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_proper_collection_with_two_groups()
     {
         $modelA1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -69,7 +69,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(2, $modelB2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_proper_not_ordered_collection_with_two_groups()
     {
         $modelA1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -88,7 +88,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(1, $modelB2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_incorrect_collection_with_two_groups()
     {
         $modelA1 = $this->newModel(['group' => 'A', 'group2' => 'A']);

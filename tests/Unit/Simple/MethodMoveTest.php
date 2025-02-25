@@ -7,7 +7,7 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodMoveTest extends SequenceTestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_move_method_on_second_element_to_move_on_top()
     {
         $model1 = $this->newModel();
@@ -19,7 +19,7 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_move_method_on_first_element_to_move_to_bottom()
     {
         $model1 = $this->newModel();
@@ -31,7 +31,7 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_move_method_on_first_element_to_move_to_bottom_with_overflow_position()
     {
         $model1 = $this->newModel();
@@ -43,7 +43,7 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_move_method_in_between_element()
     {
         $model1 = $this->newModel();
@@ -59,7 +59,7 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(3, $model4->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function update_timestamps_on_move_by_default()
     {
         $model1 = $this->newModel();
@@ -77,7 +77,7 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertNotEquals($model4->created_at, $model4->fresh()->updated_at);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function not_update_timestamps_on_move_when_config_up()
     {
         $this->setClass(TimestampsDisabledModel::class);

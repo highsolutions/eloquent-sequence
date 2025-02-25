@@ -8,7 +8,7 @@ use HighSolutions\EloquentSequence\Test\Models\SimpleModel;
 
 class MethodRefreshTest extends SequenceTestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_proper_collection()
     {
         $model1 = $this->newModel();
@@ -20,7 +20,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_proper_not_ordered_collection()
     {
         $model1 = $this->newModel();
@@ -33,7 +33,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_refresh_method_on_incorrect_collection()
     {
         $model1 = $this->newModel();
@@ -47,7 +47,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function update_timestamps_on_refresh_by_default()
     {
         $model1 = $this->newModel();
@@ -63,7 +63,7 @@ class MethodRefreshTest extends SequenceTestCase
         $this->assertNotEquals($model2->created_at, $model2->fresh()->updated_at);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function not_update_timestamps_on_refresh_when_config_up()
     {
         $model1 = $this->newModel();

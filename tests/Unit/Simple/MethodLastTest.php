@@ -7,7 +7,7 @@ use HighSolutions\EloquentSequence\Test\SequenceTestCase;
 
 class MethodLastTest extends SequenceTestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -19,7 +19,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_last_element()
     {
         $model1 = $this->newModel();
@@ -31,7 +31,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_second_element()
     {
         $model1 = $this->newModel();
@@ -45,7 +45,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element_with_3_elements()
     {
         $model1 = $this->newModel();
@@ -59,7 +59,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_last_method_on_first_element_with_wrong_sequence()
     {
         $model1 = $this->newModel(['seq' => 2]);
@@ -73,7 +73,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertEquals(4, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function update_timestamps_on_last_by_default()
     {
         $model1 = $this->newModel();
@@ -87,7 +87,7 @@ class MethodLastTest extends SequenceTestCase
         $this->assertNotEquals($model2->created_at, $model2->fresh()->updated_at);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function not_update_timestamps_on_last_when_config_up()
     {
         $this->setClass(TimestampsDisabledModel::class);

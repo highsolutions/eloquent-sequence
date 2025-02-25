@@ -14,7 +14,7 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
         $this->setClass(MultiGroupModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_1_to_second_object_when_first_is_deleted_with_one_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -27,7 +27,7 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_2_to_third_object_when_second_is_deleted_with_one_group()
     {
         $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -41,7 +41,7 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_sequence_lower_to_elements_after_deleted_object_with_one_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -54,7 +54,7 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_1_to_second_object_when_first_is_deleted_with_different_groups()
     {
         $modelA1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -70,7 +70,7 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
         $this->assertEquals(1, $modelB1->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_2_to_third_object_when_second_is_deleted_with_different_groups()
     {
         $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -85,7 +85,7 @@ class UpdatingSequenceAfterDeletingObjectsTest extends SequenceTestCase
         $this->assertEquals(2, $modelA3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sets_sequence_lower_to_elements_after_deleted_object_with_different_groups()
     {
         $modelA1 = $this->newModel(['group' => 'A', 'group2' => 'A']);

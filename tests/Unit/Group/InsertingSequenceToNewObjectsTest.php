@@ -14,7 +14,7 @@ class InsertingSequenceToNewObjectsTest extends SequenceTestCase
         $this->setClass(GroupModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function adds_1_to_first_element()
     {
         $model = $this->newModel(['group' => 'A']);
@@ -22,7 +22,7 @@ class InsertingSequenceToNewObjectsTest extends SequenceTestCase
         $this->assertEquals(1, $model->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function adds_2_to_second_element_to_the_same_group()
     {
         $this->create(1, ['group' => 'A']);
@@ -31,7 +31,7 @@ class InsertingSequenceToNewObjectsTest extends SequenceTestCase
         $this->assertEquals(2, $model->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function adds_2_to_second_element_to_different_group()
     {
         $this->create(1, ['group' => 'A']);
@@ -40,7 +40,7 @@ class InsertingSequenceToNewObjectsTest extends SequenceTestCase
         $this->assertEquals(1, $model->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function adds_2_to_third_element_but_2_in_the_same_group()
     {
         $this->create(1, ['group' => 'A']);

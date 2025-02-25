@@ -15,7 +15,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->setClass(GroupModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_first_method_on_first_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -24,7 +24,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model1->isFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_first_method_on_second_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -33,7 +33,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model2->isFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_first_method_on_first_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -42,7 +42,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model1->isNotFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_first_method_on_second_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -53,7 +53,7 @@ class MethodsFirstLastTest extends SequenceTestCase
 
 // LAST
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_last_method_on_first_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -62,7 +62,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model1->isLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_last_method_on_second_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -71,7 +71,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model2->isLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_last_method_on_first_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -80,7 +80,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model1->isNotLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_last_method_on_second_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -91,7 +91,7 @@ class MethodsFirstLastTest extends SequenceTestCase
 
 // DIFFERENT GROUPS
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_first_method_on_first_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -100,7 +100,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model1->isFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_first_method_on_first_element_of_different_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -109,7 +109,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model2->isFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_first_method_on_first_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -118,7 +118,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model1->isNotFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_first_method_on_first_element_of_different_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -127,7 +127,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model2->isNotFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_first_method_on_third_element_but_second_in_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -137,7 +137,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model3->isFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_first_method_on_third_element_but_second_in_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -149,7 +149,7 @@ class MethodsFirstLastTest extends SequenceTestCase
 
 // LAST
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_last_method_on_first_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -158,7 +158,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model1->isLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_last_method_on_second_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -167,7 +167,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model2->isLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_last_method_on_first_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -176,7 +176,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model1->isNotLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_last_method_on_second_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -185,7 +185,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model2->isNotLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_last_method_on_third_element_but_second_in_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -195,7 +195,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model3->isLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_last_method_on_third_element_but_second_in_group()
     {
         $model1 = $this->newModel(['group' => 'A']);

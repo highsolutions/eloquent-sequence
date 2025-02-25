@@ -15,7 +15,7 @@ class MethodMoveTest extends SequenceTestCase
         $this->setClass(ExceptionModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_move_method_on_second_element_to_move_on_top()
     {
         $model1 = $this->newModel();
@@ -27,7 +27,7 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_move_method_on_first_element_to_move_to_bottom()
     {
         $model1 = $this->newModel();
@@ -39,7 +39,7 @@ class MethodMoveTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_move_method_on_first_element_to_move_to_bottom_with_overflow_position()
     {
         $model1 = $this->newModel();
@@ -49,7 +49,7 @@ class MethodMoveTest extends SequenceTestCase
         $model1->move(2);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_move_method_on_second_element_to_move_to_top_with_overflow_position()
     {
         $model1 = $this->newModel();

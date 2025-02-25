@@ -15,7 +15,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->setClass(MultiGroupModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function all_the_same_groups()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -38,7 +38,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model3->isNotLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function one_different_group()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);
@@ -61,7 +61,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model3->isNotLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function all_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A', 'group2' => 'A']);

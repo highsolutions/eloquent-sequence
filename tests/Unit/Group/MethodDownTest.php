@@ -14,7 +14,7 @@ class MethodDownTest extends SequenceTestCase
         $this->setClass(GroupModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_first_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -26,7 +26,7 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_last_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -38,7 +38,7 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_second_element_with_the_same_group()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -52,7 +52,7 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_first_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -65,7 +65,7 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_last_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -78,7 +78,7 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_second_element_with_different_groups()
     {
         $model1 = $this->newModel(['group' => 'A']);
@@ -94,7 +94,7 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(2, $model3->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_first_element_with_3_elements()
     {
         $model1 = $this->newModel(['group' => 'A']);

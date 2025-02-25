@@ -15,7 +15,7 @@ class MethodDownTest extends SequenceTestCase
         $this->setClass(ExceptionModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -27,7 +27,7 @@ class MethodDownTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_last_element()
     {
         $model1 = $this->newModel();
@@ -37,7 +37,7 @@ class MethodDownTest extends SequenceTestCase
         $model2->down();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_down_method_on_second_element()
     {
         $model1 = $this->newModel();

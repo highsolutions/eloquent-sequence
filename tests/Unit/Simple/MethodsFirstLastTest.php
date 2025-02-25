@@ -15,7 +15,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->setClass(SimpleModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_first_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -24,7 +24,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model1->isFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_first_method_on_second_element()
     {
         $model1 = $this->newModel();
@@ -33,7 +33,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model2->isFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_first_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -42,7 +42,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model1->isNotFirst());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_first_method_on_second_element()
     {
         $model1 = $this->newModel();
@@ -53,7 +53,7 @@ class MethodsFirstLastTest extends SequenceTestCase
 
 // LAST
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_last_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -62,7 +62,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertFalse($model1->isLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_last_method_on_second_element()
     {
         $model1 = $this->newModel();
@@ -71,7 +71,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model2->isLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_last_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -80,7 +80,7 @@ class MethodsFirstLastTest extends SequenceTestCase
         $this->assertTrue($model1->isNotLast());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_is_not_last_method_on_second_element()
     {
         $model1 = $this->newModel();

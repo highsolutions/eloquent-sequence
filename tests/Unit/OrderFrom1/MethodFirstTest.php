@@ -14,7 +14,7 @@ class MethodFirstTest extends SequenceTestCase
         $this->setClass(OrderModel::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_first_method_on_first_element()
     {
         $model1 = $this->newModel();
@@ -26,7 +26,7 @@ class MethodFirstTest extends SequenceTestCase
         $this->assertEquals(2, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_first_method_on_second_element()
     {
         $model1 = $this->newModel();
@@ -38,7 +38,7 @@ class MethodFirstTest extends SequenceTestCase
         $this->assertEquals(1, $model2->fresh()->seq);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function use_first_method_on_third_element()
     {
         $model1 = $this->newModel();
