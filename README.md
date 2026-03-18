@@ -45,6 +45,7 @@ Version Compatibility
  10.x.x   | 3.10.x  
  11.x.x   | 3.11.x  
  12.x.x   | 3.12.x  
+ 13.x.x   | 3.13.x  
 
 Updating Eloquent models
 ------------------------
@@ -293,6 +294,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+3.13.0
+- Laravel 13 support
 
 3.12.0
 - Laravel 12 support

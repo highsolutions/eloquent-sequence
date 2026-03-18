@@ -18,7 +18,9 @@ trait Sequence
      */
     public static function bootSequence()
     {
-        self::observe(SequenceObserver::class);
+        static::whenBooted(function () {
+            static::observe(SequenceObserver::class);
+        });
     }
 
     /**
